@@ -6,7 +6,7 @@ Java中的反射首先是能够获取到Java中要反射类的字节码，获取
 
 - Class.forName(className)
 - 类名.class
-- this.getClass()。
+- this.getClass()
 
 然后将字节码中的方法，变量，构造函数等映射成相应的Method、Filed、Constructor等类，这些类提供了丰富的方法可以被我们所使用。
 
