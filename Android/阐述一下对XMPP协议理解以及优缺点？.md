@@ -64,69 +64,67 @@ MSN，ICQ等。基本的网络形式是单客户端通过TCP/IP连接到单服�
 
 客户端：
 
-```
+```xml
 <?xmlversion='1.0'?>
 <stream:stream
-to='example_com'
-xmlns='jabber:client'
-xmlns:stream='http_etherx_jabber_org/streams'
-version='1.0'>
+	to='example_com'
+	xmlns='jabber:client'
+	xmlns:stream='http_etherx_jabber_org/streams'
+	version='1.0'>
 ```
 
 服务器：
 
-```
+```xml
 <?xmlversion='1.0'?>
 <stream:stream
-from='example_com'
-id='someid'
-xmlns='jabber:client'
-xmlns:stream='http_etherx_jabber_org/streams'
-version='1.0'>
+	from='example_com'
+	id='someid'
+	xmlns='jabber:client'
+	xmlns:stream='http_etherx_jabber_org/streams'
+	version='1.0'>
 ```
 
 其他通信
 客户端：
 
-```
+```xml
 <messagefrom='juliet_example_com'
-to='romeo_example_net'
-xml:lang='zh-cn'>
-    <body>Art thou not Romeo, and a Montague?</body>
+	to='romeo_example_net'
+	xml:lang='zh-cn'>
+    	<body>Art thou not Romeo, and a Montague?</body>
 </message>
 ```
 
 服务器：
 
-```
+```xml
 <message from='romeo_example_net'
-to='juliet_example_com'
-xml:lang='zh-cn'>
+	to='juliet_example_com'
+	xml:lang='zh-cn'>
     <body>Neither, fair saint, if either thee dislike.</body>
 </message>
 ```
 
 客户端：
 
-```
+```xml
 </stream:stream>
 ```
 
 服务器：
 
-```
+```xml
 </stream:stream>
 ```
 
-- 以文档的观点来看，客户端或服务器发送的所有XML文本连缀在一起，从<stream>到</stream>构成了一个完整的XML文档。其中的stream标签就是所谓的XML Stream。在<stream>与</stream>中间的那些<message>...</message>这样的XML元素就是所谓的XML Stanza（XML节）。 XMPP核心协议通信的基本模式就是先建立一个stream，然后协商一堆安全之类的东西，中间通信过程就是客户端发送XML Stanza，一个接一个的。服务器根据客户端发送的信息以及程序的逻辑，发送XML Stanza给客户端。但是这个过程并不是一问一答的，
-  任何时候都有可能从一方发信给另外一方。通信的最后阶段是</stream>关闭流，关闭TCP/IP连接。
+- 以文档的观点来看，客户端或服务器发送的所有XML文本连缀在一起，从&lt;stream>到&lt;/stream>构成了一个完整的XML文档。其中的stream标签就是所谓的XML Stream。在&lt;stream>与&lt;/stream>中间的那些&lt;message>...&lt;/message>这样的XML元素就是所谓的XML Stanza（XML节）。 XMPP核心协议通信的基本模式就是先建立一个stream，然后协商一堆安全之类的东西，中间通信过程就是客户端发送XML Stanza，一个接一个的。服务器根据客户端发送的信息以及程序的逻辑，发送XML Stanza给客户端。但是这个过程并不是一问一答的，
+  任何时候都有可能从一方发信给另外一方。通信的最后阶段是&lt;/stream>关闭流，关闭TCP/IP连接。
 
 > XMPP 的消息格式。
 > XMPP 协议的所有消息都是 XML 格式的，在 XMPP 中定义了 3 个顶层消息：
 
 - 2.1 Presence
-
-  ​
 
   用于确定用户的状态。消息结构举例如下（每个 XML 的 node 还会有很多其他 attribute，为了简单起见这里省略，下同）：
 
@@ -138,8 +136,6 @@ xml:lang='zh-cn'>
 
 - 2.2 Message
 
-  ​
-
   用于在两个用户之间发送消息。消息结构举例如下：
 
   ```
@@ -148,9 +144,7 @@ xml:lang='zh-cn'>
   </message>
   ```
 
-- 2.3 IQ
-
-  ​
+- 2.3 IQ​
 
   信息/请求，是一个请求－响应机制，管理XMPP服务器上两个用户的转换，允许他们通过相应的XML格式进行查询和响应。
 

@@ -56,7 +56,7 @@ okhttp源码特别特别复杂，类涉及较多，导致本文非常长，我�
 
 官方博客栗子：[http://square.github.io/okhttp/#examples](http://square.github.io/okhttp/#examples)
 
-```
+```java
 OkHttpClient client = new OkHttpClient();
 
 String run(String url) throws IOException {
@@ -87,13 +87,13 @@ OkHttp使用Call抽象出一个满足请求的模型，尽管中间可能会有�
 
 ### 第一步：创建 OkHttpClient对象,进行源码分析：
 
-```
-OkHttpClient client = new OkHttpClient();`
+```java
+OkHttpClient client = new OkHttpClient();
 ```
 
 通过okhttp源码分析,直接创建的 OkHttpClient对象并且默认构造builder对象进行初始化
 
-```
+```java
 public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory {
   public OkHttpClient() {
        this(new Builder());
@@ -135,7 +135,7 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
 
 ### 第二步：接下来发起 HTTP 请求
 
-```
+```java
 Request request = new Request.Builder().url("url").build();
 okHttpClient.newCall(request).enqueue(new Callback() {
   @Override
@@ -152,13 +152,13 @@ public void onResponse(Call call, Response response) throws IOException {
 
 ### 第二步：代码流程分析：
 
-```
+```java
 Request request = new Request.Builder().url("url").build();
 ```
 
 初始化构建者模式和请求对象，并且用URL替换Web套接字URL。
 
-```
+```java
 public final class Request {
     public Builder() {
       this.method = "GET";
@@ -187,7 +187,7 @@ public final class Request {
 
 ### 第三步：方法解析：
 
-```
+```java
 okHttpClient.newCall(request).enqueue(new Callback() {
 @Override
 public void onFailure(Call call, IOException e) {
@@ -203,7 +203,7 @@ public void onResponse(Call call, Response response) throws IOException {
 
 源码分析：
 
-```
+```java
 public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory {
    @Override 
    public Call newCall(Request request) {
@@ -219,7 +219,7 @@ RealCall实现了Call.Factory接口创建了一个RealCall的实例，而RealCal
 
 ### 异步请求的执行流程
 
-```
+```java
 final class RealCall implements Call {
    @Override 
    public void enqueue(Callback responseCallback) {
@@ -241,7 +241,7 @@ final class RealCall implements Call {
 
 3）AsyncCall是RealCall的一个内部类并且继承NamedRunnable，那么首先看NamedRunnable类是什么样的，如下：
 
-```
+```java
 public abstract class NamedRunnable implements Runnable {
   ......
 
@@ -260,7 +260,7 @@ public abstract class NamedRunnable implements Runnable {
 
 可以看到NamedRunnable实现了Runnbale接口并且是个抽象类，其抽象方法是execute()，该方法是在run方法中被调用的，这也就意味着NamedRunnable是一个任务，并且其子类应该实现execute方法。下面再看AsyncCall的实现：
 
-```
+```java
 final class AsyncCall extends NamedRunnable {
     private final Callback responseCallback;
 
@@ -304,7 +304,7 @@ responseCallback.onResponse(RealCall.this, response);
 
 走完这两句代码会进行回调到刚刚我们初始化Okhttp的地方,如下：
 
-```
+```java
 okHttpClient.newCall(request).enqueue(new Callback() {
    @Override
    public void onFailure(Call call, IOException e) {
@@ -320,7 +320,7 @@ okHttpClient.newCall(request).enqueue(new Callback() {
 
 ### 核心重点类Dispatcher线程池介绍
 
-```
+```java
 public final class Dispatcher {
   /** 最大并发请求数为64 */
   private int maxRequests = 64;
@@ -342,7 +342,7 @@ public final class Dispatcher {
 
 在OkHttp，使用如下构造了单例线程池
 
-```
+```java
 public synchronized ExecutorService executorService() {
     if (executorService == null) {
       executorService = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60, TimeUnit.SECONDS,
@@ -354,7 +354,7 @@ public synchronized ExecutorService executorService() {
 
 构造一个线程池ExecutorService：
 
-```
+```java
 executorService = new ThreadPoolExecutor(
 //corePoolSize 最小并发线程数,如果是0的话，空闲一段时间后所有线程将全部被销毁
     0, 
@@ -374,7 +374,7 @@ executorService = new ThreadPoolExecutor(
 
 也就是说，在实际运行中，当收到10个并发请求时，线程池会创建十个线程，当工作完成后，线程池会在60s后相继关闭所有线程。
 
-```
+```java
 synchronized void enqueue(AsyncCall call) {
     if (runningAsyncCalls.size() < maxRequests && runningCallsForHost(call) < maxRequestsPerHost) {
       runningAsyncCalls.add(call);
@@ -397,7 +397,7 @@ synchronized void enqueue(AsyncCall call) {
 
 [点我，线程池原理，在文章性能优化最后有视频对线程池原理讲解](http://www.jianshu.com/p/c22398f8587f)
 
-```
+```java
  try {
         Response response = getResponseWithInterceptorChain();
         if (retryAndFollowUpInterceptor.isCanceled()) {
@@ -414,7 +414,7 @@ synchronized void enqueue(AsyncCall call) {
 
 当任务执行完成后，无论是否有异常，finally代码段总会被执行，也就是会调用Dispatcher的finished函数
 
-```
+```java
  void finished(AsyncCall call) {
     finished(runningAsyncCalls, call, true);
   }
@@ -422,7 +422,7 @@ synchronized void enqueue(AsyncCall call) {
 
 从上面的代码可以看出，第一个参数传入的是正在运行的异步队列，第三个参数为true，下面再看有是三个参数的finished方法：
 
-```
+```java
 private <T> void finished(Deque<T> calls, T call, boolean promoteCalls) {
     int runningCallsCount;
     Runnable idleCallback;
@@ -441,7 +441,7 @@ private <T> void finished(Deque<T> calls, T call, boolean promoteCalls) {
 
 打开源码，发现它将正在运行的任务Call从队列runningAsyncCalls中移除后，获取运行数量判断是否进入了Idle状态,接着执行promoteCalls()函数,下面是promoteCalls()方法：
 
-```
+```java
 private void promoteCalls() {
     if (runningAsyncCalls.size() >= maxRequests) return; // Already running max capacity.
     if (readyAsyncCalls.isEmpty()) return; // No ready calls to promote.
@@ -464,7 +464,7 @@ private void promoteCalls() {
 
 ### 核心重点getResponseWithInterceptorChain方法
 
-```
+```java
 Response getResponseWithInterceptorChain() throws IOException {
     // Build a full stack of interceptors.
     List<Interceptor> interceptors = new ArrayList<>();
@@ -498,7 +498,7 @@ OkHttp的这种拦截器链采用的是责任链模式，这样的好处是将�
 
 从上述源码得知，不管okhttp有多少拦截器最后都会走，如下方法：
 
-```
+```java
 Interceptor.Chain chain = new RealInterceptorChain(
         interceptors, null, null, null, 0, originalRequest);
 return chain.proceed(originalRequest);
@@ -510,7 +510,7 @@ RealInterceptorChain类
 
 下面是RealInterceptorChain的定义，该类实现了Chain接口，在getResponseWithInterceptorChain调用时好几个参数都传的null。
 
-```
+```java
 public final class RealInterceptorChain implements Interceptor.Chain {
 
    public RealInterceptorChain(List<Interceptor> interceptors, StreamAllocation streamAllocation,
@@ -556,7 +556,7 @@ public final class RealInterceptorChain implements Interceptor.Chain {
 
 Interceptor 代码如下：
 
-```
+```java
 public interface Interceptor {
   Response intercept(Chain chain) throws IOException;
 
@@ -574,7 +574,7 @@ BridgeInterceptor
 
 BridgeInterceptor从用户的请求构建网络请求，然后提交给网络，最后从网络响应中提取出用户响应。从最上面的图可以看出，BridgeInterceptor实现了适配的功能。下面是其intercept方法：
 
-```
+```java
 public final class BridgeInterceptor implements Interceptor {
   ......
 
@@ -665,7 +665,7 @@ Response.Builder responseBuilder = networkResponse.newBuilder()
 
 从上面的代码可以看出，首先获取原请求，然后在请求中添加头，比如Host、Connection、Accept-Encoding参数等，然后根据看是否需要填充Cookie，在对原始请求做出处理后，使用chain的procced方法得到响应，接下来对响应做处理得到用户响应，最后返回响应。接下来再看下一个拦截器ConnectInterceptor的处理。
 
-```
+```java
 public final class ConnectInterceptor implements Interceptor {
   ......
 
@@ -691,7 +691,7 @@ CallServerInterceptor
 
 CallServerInterceptor是拦截器链中最后一个拦截器，负责将网络请求提交给服务器。它的intercept方法实现如下：
 
-```
+```java
 @Override 
 public Response intercept(Chain chain) throws IOException {
     RealInterceptorChain realChain = (RealInterceptorChain) chain;

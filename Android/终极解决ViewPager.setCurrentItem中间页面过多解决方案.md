@@ -65,7 +65,7 @@ ViewPager.setCurrentItem(position,false);
 
 ### **自定义一个Scroll类，用于控制ViewPager滑动速度：**
 
-```
+```java
 public  class MScroller extends Scroller {
 
    private static final Interpolator sInterpolator = new Interpolator() {
@@ -107,7 +107,7 @@ public  class MScroller extends Scroller {
 
 ### **为方便使用，定义一个辅助类**
 
-```
+```java
 public class ViewPageHelper {
     ViewPager viewPager;
 
@@ -166,7 +166,7 @@ public class ViewPageHelper {
 
 3）但是这样有点麻烦，每次还要手动改，而且使用TabLayout或者ViewPagerIndicator的话，它会自动调用ViewPager的方法，无法使用Helper，所以可以采用自定一个ViewPager,代码如下：
 
-```
+```java
 public class SuperViewPager extends ViewPager {
 
 

@@ -52,7 +52,7 @@
 
 通过一个小栗子开始咱们的源码分析
 
-```
+```java
 RequestQueue queue = Volley.newRequestQueue(this);
      String url ="http://www.baidu.com";
     StringRequest stringRequest = new  StringRequest(Request.Method.GET,
@@ -74,13 +74,13 @@ RequestQueue queue = Volley.newRequestQueue(this);
 
 ### 第一部分：一行行分析
 
-```
+```java
 RequestQueue queue = Volley.newRequestQueue(this);
 ```
 
 进入源码分析:
 
-```
+```java
 public static RequestQueue newRequestQueue(Context context) {
    return newRequestQueue(context, (HttpStack)null);
 }
@@ -90,7 +90,7 @@ public static RequestQueue newRequestQueue(Context context) {
 
 1）该方法有两个参数，第一个Context是上下文，第二个参数为null
 
-```
+```java
 public static RequestQueue newRequestQueue(Context context, HttpStack stack) {
    File cacheDir = new File(context.getCacheDir(), "volley");
    String userAgent = "volley/0";
@@ -126,18 +126,18 @@ public static RequestQueue newRequestQueue(Context context, HttpStack stack) {
 
 4）在这个if中对版本号进行了判断，如果版本号大于等于9就使得HttpStack对象的实例为HurlStack，如果小于9则实例为HttpClientStack。至于这里为何进行版本号判断，实际代码中已经说明了，请看下文。
 
-5)BasicNetwork是Network接口的实现，BasicNetwork实现了performRequest方法，其作用是根据传入的HttpStack对象来处理网络请求。紧接着new出一个RequestQueue对象，并调用它的start()方法进行启动，然后将RequestQueue返回。RequestQueue是根目录下的一个类，其作用是一个请求调度队列调度程序的线程池。这样newRequestQueue()的方法就执行结束了。
+5)  BasicNetwork是Network接口的实现，BasicNetwork实现了performRequest方法，其作用是根据传入的HttpStack对象来处理网络请求。紧接着new出一个RequestQueue对象，并调用它的start()方法进行启动，然后将RequestQueue返回。RequestQueue是根目录下的一个类，其作用是一个请求调度队列调度程序的线程池。这样newRequestQueue()的方法就执行结束了。
 
 > 第四条如何分析出来请看如下代码：
 
-```
+```java
 public class HurlStack implements HttpStack 
 public class HttpClientStack implements HttpStack
 ```
 
 继承httpStack接口
 
-```
+```java
 public interface HttpStack {
     HttpResponse performRequest(Request<?> var1, Map<String, String> var2) throws IOException, AuthFailureError;
 }
@@ -147,7 +147,7 @@ public interface HttpStack {
 
 #### HttpClientStack代码如下:
 
-```
+```java
 public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders) throws IOException, AuthFailureError {
         HttpUriRequest httpRequest = createHttpRequest(request, additionalHeaders);
         addHeaders(httpRequest, additionalHeaders);
@@ -163,7 +163,7 @@ public HttpResponse performRequest(Request<?> request, Map<String, String> addit
 
 #### HurlStack代码如下：
 
-```
+```java
 public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders) throws IOException, AuthFailureError {
      ......
 
@@ -180,7 +180,7 @@ public HttpResponse performRequest(Request<?> request, Map<String, String> addit
 
 继续源码分析，现在再来看下RequestQueue队列的start方法，如下所示：
 
-```
+```java
 public void start() {
         this.stop();
         this.mCacheDispatcher = new CacheDispatcher(this.mCacheQueue, this.mNetworkQueue, this.mCache, this.mDelivery);
@@ -204,7 +204,7 @@ for(int i = 0; i < this.mDispatchers.length; ++i) {
 
 > 第三条如何分析出来for循环会执行四次 , 请看如下代码分析：
 
-```
+```java
 public RequestQueue(Cache cache, Network network, int threadPoolSize, ResponseDelivery delivery) {
         ......
         this.mDispatchers = new NetworkDispatcher[threadPoolSize];
@@ -214,7 +214,7 @@ public RequestQueue(Cache cache, Network network, int threadPoolSize, ResponseDe
 
 threadPoolSize大小是4，如何看出来请看如下代码：
 
-```
+```java
  public RequestQueue(Cache cache, Network network, int threadPoolSize) {
         this(cache, network, threadPoolSize, new ExecutorDelivery(new Handler(Looper.getMainLooper())));
     }
@@ -226,13 +226,13 @@ threadPoolSize大小是4，如何看出来请看如下代码：
 
 通过构造方法传递，默认是4，如上已经把第一行代码分析完毕，进入第二部分。
 
-```
+```java
 RequestQueue queue = Volley.newRequestQueue(this);
 ```
 
 ### 第二部分：添加请求到队列
 
-```
+```java
 StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 url,
 new Response.Listener<String>() {
@@ -252,7 +252,7 @@ public void onResponse(String response) {
 
 调用RequestQueue的add()方法将Request传入就可以完成网络请求操作了。也就是说add()方法的内部是核心代码了。现在看下RequestQueue的add方法，具体如下：
 
-```
+```java
 public Request add(Request request) {
         request.setRequestQueue(this);
         Set var2 = this.mCurrentRequests;
@@ -301,7 +301,7 @@ public Request add(Request request) {
 
 ### 第三部分：CacheDispatcher中的run()方法，代码如下所示：
 
-```
+```java
  public void run() {
    if(DEBUG) {
       VolleyLog.v("start new dispatcher", new Object[0]);
@@ -342,17 +342,17 @@ public Request add(Request request) {
 
 ### 以上源码可知：
 
-1）首先通过Process.setThreadPriority设置线程优先级；
+1）首先通过Process.setThreadPriority设置线程优先级
 
 2）mCache.initialize(); 初始化缓存块
 
-3）while(true)循环，表示它一直在等待缓存队列的新请求的出现；
+3）while(true)循环，表示它一直在等待缓存队列的新请求的出现
 
 4）接着，先判断这个请求是否有对应的缓存结果，如果没有则直接添加到网络请求队列
 
-5）再判断这个缓存结果是否过期了，如果过期则同样地添加到网络请求队列；
+5）再判断这个缓存结果是否过期了，如果过期则同样地添加到网络请求队列
 
-6)接下来便是对缓存结果的处理了，我们可以看到，先是把缓存结果包装成NetworkResponse类，然后调用了Request的parseNetworkResponse;
+6)  接下来便是对缓存结果的处理了，我们可以看到，先是把缓存结果包装成NetworkResponse类，然后调用了Request的parseNetworkResponse;
 
 ### 小结
 
@@ -362,7 +362,7 @@ CacheDispatcher线程主要对请求进行判断，是否已经有缓存，是�
 
 ### 第四部分：NetworkDispatcher代码如下所示：
 
-```
+```java
 public void run() {
    Process.setThreadPriority(10);
    while(true) {
@@ -402,7 +402,7 @@ public void run() {
 
 2）而Network是一个接口，这里具体的实现之前已经分析是BasicNetwork，所以先看下它的performRequest()方法，如下所示：
 
-```
+```java
 public NetworkResponse performRequest(Request<?> request) throws VolleyError {
     long requestStart = SystemClock.elapsedRealtime();
     while(true) {
@@ -431,19 +431,19 @@ public NetworkResponse performRequest(Request<?> request) throws VolleyError {
 
 ### 由上述代码可知：
 
-1）httpResponse = this.mHttpStack.performRequest(request, e)该方法返回了httpResponse；
+1）httpResponse = this.mHttpStack.performRequest(request, e)该方法返回了httpResponse
 
-2）把httpResponse 交给 new NetworkResponse对象进行处理，封装成NetworkResponse对象并返回；
+2）把httpResponse 交给 new NetworkResponse对象进行处理，封装成NetworkResponse对象并返回
 
-3）在NetworkDispatcher#run()方法获取返回的NetworkResponse对象后，对响应解析；
+3）在NetworkDispatcher#run()方法获取返回的NetworkResponse对象后，对响应解析
 
 4）在解析完了NetworkResponse中的数据之后，又会调用ExecutorDelivery（ResponseDelivery接口的实现类）的postResponse()方法来回调解析出的数据，具体代码如下所示：
 
-```
+```java
  this.mDelivery.postResponse(request, response);
 ```
 
-```
+```java
 public void postResponse(Request<?> request, Response<?> response, Runnable runnable) {
         request.markDelivered();
         request.addMarker("post-response");
@@ -453,7 +453,7 @@ public void postResponse(Request<?> request, Response<?> response, Runnable runn
 
 这里可以看见在mResponsePoster的execute()方法中传入了一个ResponseDeliveryRunnable对象，就可以保证该对象中的run()方法就是在主线程当中运行的了，我们看下run()方法中的代码是什么样的：
 
-```
+```java
 if(this.mResponse.isSuccess()) {
                       this.mRequest.deliverResponse(this.mResponse.result);
  } else {

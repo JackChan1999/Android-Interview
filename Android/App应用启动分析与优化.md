@@ -177,7 +177,7 @@ public class MyApp extends Application {
 在drawable文件夹下面 , 做一个logo_splash的背景:
 start_window.xml
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 底层白色 -->
@@ -194,7 +194,7 @@ start_window.xml
 
 在style里面弄一个主题:
 
-```
+```xml
 <style name="StartStyle" parent="AppTheme">
         <item name="android:windowBackground">@drawable/start_window</item>
     </style>
@@ -202,7 +202,7 @@ start_window.xml
 
 在清单文件里面给Activity指定需要预加载的Style：
 
-```
+```xml
 <activity android:name=".MainActivity" android:theme="@style/StartStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -214,7 +214,7 @@ start_window.xml
 
 activity代码如下：
 
-```
+```java
 public class MainActivity extends AppCompatActivity {
 
     @Override

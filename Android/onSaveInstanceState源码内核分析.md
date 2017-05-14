@@ -56,7 +56,7 @@
 
 失去焦点，activity很可能被进程终止！被KILL掉了，这时候就需要能保存当前的状态，不然下次用户再次进来看到的还是新闻，这样用户体验就不够好，代码有删减，我自己项目就这样使用的，解决方案如下：
 
-```
+```java
 @Override
 public void onSaveInstanceState(Bundle outState) {
   outState.putInt("newsCenter_position", newsCenterPosition);
@@ -70,7 +70,7 @@ public void onSaveInstanceState(Bundle outState) {
 
 1）界面被回收之后调用onSaveInstanceState方法保存当前的状态，每个侧滑菜单选项都有一个位置。
 
-```
+```java
 @Override
 public void onCreate(Bundle savedInstanceState) {
 if (savedInstanceState != null
@@ -91,7 +91,7 @@ if (savedInstanceState != null
 
 1）判断当前Bundle 是否有刚刚我们保存的位置，如果不为空，从当前的Bundle取出来，给每一个位置赋值。
 
-```
+```java
 public void switchMenu(int type) {        
 switch (type) {
      case NEWS_CENTER:
@@ -130,7 +130,7 @@ switch (type) {
 
 #### **总结下savedInstanceState的使用，代码如下：**
 
-```
+```java
 public class MainActivity extends Activity {  
 
     @Override  
@@ -168,7 +168,7 @@ I/System.out( 8167): onRestoreInstanceState() : www.baidu.com
 
 从打印结果可以看出来，当前Activity被系统回收之后,会调用onSaveInstanceState()保存状态，然后在activity判断bundler是否有当前状态，如果只是到这，估计你们就会吐槽没啥含金量，没办法硬着头皮上，接着咱们来分onSaveInstanceState()源码，请看如下代码：
 
-```
+```java
  @Override
  public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -180,7 +180,7 @@ I/System.out( 8167): onRestoreInstanceState() : www.baidu.com
 
 1）调用父类Activity源码里面的onSaveInstanceState方法，代码如下：
 
-```
+```java
 protected void onSaveInstanceState(Bundle outState) {
    outState.putBundle(WINDOW_HIERARCHY_TAG, mWindow.saveHierarchyState());
    Parcelable p = mFragments.saveAllState();
@@ -197,7 +197,7 @@ protected void onSaveInstanceState(Bundle outState) {
 
 2）window是抽象类调用子类PhoneWindow里面的saveHierarchyState方法代码如下：
 
-```
+```java
 @Override
 public Bundle saveHierarchyState() {
   Bundle outState = new Bundle();
@@ -221,7 +221,7 @@ public Bundle saveHierarchyState() {
 
 3）mContentParent.saveHierarchyState(states)，整个View树的顶层视图保存了层级状态代码如下：
 
-```
+```java
 public void saveHierarchyState(SparseArray<Parcelable> container) {
         dispatchSaveInstanceState(container);
 }
@@ -231,7 +231,7 @@ public void saveHierarchyState(SparseArray<Parcelable> container) {
 
 1）调相应的dispatchSaveInstanceState方法，代码如下：
 
-```
+```java
 protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
    if (mID != NO_ID && (mViewFlags & SAVE_DISABLED_MASK) == 0) {
     mPrivateFlags &= ~PFLAG_SAVE_STATE_CALLED;
@@ -253,7 +253,7 @@ protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
 
 1） mID != NO_ID 判断一个View必须有一个id，也就是说你要么在xml里通过android:id指定要么在代码里通过setId，但是你从如上代码压根是看不出来谷歌想干啥，必须全局搜索NO_ID 和 mID ，一般在源码里面都会有谷歌工程师的注释方便我们理解，搜索NO_ID 可知代码如下：
 
-```
+```java
 /**
   * Used to mark a View that has no ID.
   */
@@ -262,7 +262,7 @@ protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
 
 原来NO_ID用来标记没有id的View，搜索mID可知原来在如下代码赋值
 
-```
+```java
 public void setId(@IdRes int id) {
         mID = id;
         if (mID == View.NO_ID && mLabelForId != View.NO_ID) {
@@ -279,7 +279,7 @@ public void setId(@IdRes int id) {
 
 4）走到这onSaveInstanceState()，调用如下代码：
 
-```
+```java
 @CallSuper
 protected Parcelable onSaveInstanceState() {
         mPrivateFlags |= PFLAG_SAVE_STATE_CALLED;
@@ -292,7 +292,7 @@ protected Parcelable onSaveInstanceState() {
 
 1）设置位标志， 默认不save任何东西，状态为空，这就是为啥我们每次随便写个类继承activity实现onCreate方法的时候可以使用参数savedInstanceState保存状态，因为默认为null，代码如下：
 
-```
+```java
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         savedInstanceState.putString("key","value");

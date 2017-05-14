@@ -55,27 +55,53 @@ Android 系统的编译环境目前只支持 [Linux](http://lib.csdn.net/base/li
 
 #### 1.1. 了解虚拟机的安装和创建新虚拟机的方法
 
-![img](http://img.blog.csdn.net/20170509215748399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![img](http://img.blog.csdn.net/20170509215911276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![img](http://img.blog.csdn.net/20170509215941292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![img](http://img.blog.csdn.net/20170509220012309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![img](http://img.blog.csdn.net/20170509220032583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![img](http://img.blog.csdn.net/20170509220058630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![img](http://img.blog.csdn.net/20170509220145654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![img](http://img.blog.csdn.net/20170509215748399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
+![img](http://img.blog.csdn.net/20170509215911276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
+![img](http://img.blog.csdn.net/20170509215941292?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
+![img](http://img.blog.csdn.net/20170509220012309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
+![img](http://img.blog.csdn.net/20170509220032583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
+![img](http://img.blog.csdn.net/20170509220058630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
+![img](http://img.blog.csdn.net/20170509220145654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 
 ![img](http://img.blog.csdn.net/20170509220157248?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509220211014?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
 
 #### 1.2. 了解虚拟机里安装Ubuntu系统的方法
 
 ![img](http://img.blog.csdn.net/20170509220356053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
+
+
 ![img](http://img.blog.csdn.net/20170509220425563?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
 
 ![img](http://img.blog.csdn.net/20170509220510096?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
+
+
 ![img](http://img.blog.csdn.net/20170509220557648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509220626695?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509220713414?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509220739974?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # Android源码下载
@@ -313,10 +339,16 @@ Android 系统的编译环境目前只支持 [Linux](http://lib.csdn.net/base/li
 ### 5. 了解SourceInsight的使用方法
 
 ![img](http://img.blog.csdn.net/20170509221148603?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509221222106?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509221249262?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509221322198?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ![img](http://img.blog.csdn.net/20170509221346889?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
 
 ![img](http://img.blog.csdn.net/20170509221411530?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXdxMzg0ODA3Njgz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 

@@ -66,7 +66,7 @@
 
 第四：找到我的build.gradle文件，去掉刚刚冲突的jar包，如下展示：
 
-```
+```gradle
  //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
    compile ('cn.bmob.android:bmob-sdk:3.5.5'){ // gson-2.6.2
         exclude group: 'com.squareup.okhttp3'

@@ -48,7 +48,7 @@
 
 ## 谈一下你对Android中的context的理解，在一个应用程序中有多少个context实例？
 
-### 一、 什么是Context?
+### 1. 什么是Context?
 
 ![img](http://upload-images.jianshu.io/upload_images/4037105-bf283f5324e5a188.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -69,17 +69,15 @@ application-level operations such as launching activities, broadcasting and rece
 
 ### 从上可知一下三点,即：
 
-1)它描述的是一个应用程序环境的信息，即上下文。
-
-2)该类是一个抽象(abstract class)类，Android提供了该抽象类的具体实现类(后面我们会讲到是ContextIml类)。
-
-3)通过它我们可以获取应用程序的资源和类，也包括一些应用级别操作，例如：启动一个Activity，发送广播，接受Intent信息 等。。
+- 它描述的是一个应用程序环境的信息，即上下文。
+- 该类是一个抽象(abstract class)类，Android提供了该抽象类的具体实现类(后面我们会讲到是ContextIml类)。
+- 通过它我们可以获取应用程序的资源和类，也包括一些应用级别操作，例如：启动一个Activity，发送广播，接受Intent信息 等
 
 首先看它们的继承关系
 
 ![img](http://upload-images.jianshu.io/upload_images/4037105-3f6dfbce58383d95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### 二、 什么时候创建Context实例
+### 2. 什么时候创建Context实例
 
 熟悉了Context的继承关系后，我们接下来分析应用程序在什么情况需要创建Context对象的？应用程序创建Context实例的情况有如下几种情况：
 
@@ -94,7 +92,7 @@ application-level operations such as launching activities, broadcasting and rece
 1、创建Application对象的Context:
 首先新建一个MyApplication并让它继承自Application，然后在AndroidManifest.xml文件中对MyApplication进行指定，如下所示：
 
-```
+```xml
 <application
     android:name=".MyApplication"
     android:allowBackup="true"
@@ -107,7 +105,7 @@ application-level operations such as launching activities, broadcasting and rece
 
 指定完成后，当我们的程序启动时Android系统就会创建一个MyApplication的实例,通过如下代码获取到它的实例:
 
-```
+```java
 public class MainActivity extends Activity {
 
     @Override
@@ -127,7 +125,7 @@ public class MainActivity extends Activity {
 
 那么除了getApplication()方法，其实还有一个getApplicationContext()方法，这两个方法看上去好像有点关联，那么它们的区别是什么呢？我们将代码修改一下：
 
-```
+```java
 public class MainActivity extends Activity {
 
     @Override
@@ -150,7 +148,7 @@ public class MainActivity extends Activity {
 
 那么有的朋友可能就会问了，既然这两个方法得到的结果都是相同的，那么Android为什么要提供两个功能重复的方法呢？实际上这两个方法在作用域上有比较大的区别。getApplication()方法的语义性非常强，一看就知道是用来获取Application实例的，但是这个方法只有在Activity和Service中才能调用的到。那么也许在绝大多数情况下我们都是在Activity或者Service中使用Application的，但是如果在一些其它的场景，比如BroadcastReceiver中也想获得Application的实例，这时就可以借助getApplicationContext()方法了，如下所示：
 
-```
+```java
 public class MyReceiver extends BroadcastReceiver {  
 
     @Override  
