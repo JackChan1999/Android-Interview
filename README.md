@@ -1,3 +1,13 @@
+## GitHub托管
+
+https://github.com/JackChan1999/Android-Interview
+
+## GitBook在线阅读
+
+在线阅读，PDF、ePub、Mobi电子书下载
+
+https://www.gitbook.com/book/alleniverson/android-interview/details
+
 ## [Android面试宝典](http://download.csdn.net/detail/axi295309066/9842371)
 
 内容：JavaSE 基础，JavaSE 高级，Android 基础，Android 高级，Android 项目，项目面试常见问题，面试实战记录，BAT 面试题，Android 最新技术
@@ -73,13 +83,18 @@
   * [一个五年Android开发者百度、阿里、聚美、映客的面试心经](chapter1/一个五年Android开发者百度、阿里、聚美、映客的面试心经.md)
   * [技术硬碰硬—阳哥带你玩转上海Android招聘市场](Android/技术硬碰硬—阳哥带你玩转上海Android招聘市场.md)
 
-## GitHub托管
 
-https://github.com/JackChan1999/Android-Interview
+## 关注我
 
-## GitBook在线阅读
+- Email：<815712739@qq.com>
+- CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
+- 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
+- GitHub：[JackChan1999](https://github.com/JackChan1999)
+- GitBook：[alleniverson](https://www.gitbook.com/@alleniverson)
+- 个人博客：[JackChan](https://jackchan1999.github.io/)
 
-在线阅读，PDF、ePub、Mobi电子书下载
+如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！
 
-https://www.gitbook.com/book/alleniverson/android-interview/details
-
+|                  微信赞赏支持                  |                 支付宝赞赏支持                  |
+| :--------------------------------------: | :--------------------------------------: |
+| <img src="assets/weixin.png" width="300" /> | <img src="assets/支付宝.jpg" width="300" /> |
