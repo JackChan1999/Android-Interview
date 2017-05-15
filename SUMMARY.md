@@ -9,6 +9,7 @@
   * [2016年4月某公司面试题及面试流程](Android/2016年4月某公司面试题及面试流程.md)
   * [国内一线互联网公司内部面试题库](Android/国内一线互联网公司内部面试题库.md)
   * [扫清Android面试障碍](Android/扫清Android面试障碍.md)
+  * [史上最全 Android 面试资料集合](Android/史上最全 Android 面试资料集合)
   * [面试重点](Android/面试重点.md)
   * [面试题](Android/面试题.md)
   * [接口安全](Android/接口安全.md)
@@ -47,7 +48,7 @@
   * [115个Java面试题及回答](Java/115个Java面试题及回答.md)
   * [J2SE基础面试核心内容](Java/J2SE基础面试核心内容.md)
   * [J2SE高级面试核心内容](Java/J2SE高级面试核心内容.md)
-* 经验之谈
+* [经验之谈](HR/README.md)
   * [罗永浩新东方万字求职信](chapter1/罗永浩新东方万字求职信.md)
   * [我为什么离开锤子科技？](chapter1/我为什么离开锤子科技？.md)
   * [一个程序员的血泪史](chapter1/一个程序员的血泪史.md)
