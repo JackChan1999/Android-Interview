@@ -54,6 +54,8 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
   * [Android源码编译实现静默安装和静默偷拍](Android/Android源码编译实现静默安装和静默偷拍.md)
 * Activity相关面试题
   * [onSaveInstanceState源码内核分析](Android/onSaveInstanceState源码内核分析.md)
+  * [深刻剖析activity启动模式-1](Android/深刻剖析activity启动模式-1.md)
+  * [深刻剖析activity启动模式-2](Android/深刻剖析activity启动模式-2.md)
 * 与XMPP相关面试题
   * [阐述一下对XMPP协议理解以及优缺点？](Android/阐述一下对XMPP协议理解以及优缺点？.md)
   * [简单阐述一下及时推送原理？](Android/简单阐述一下及时推送原理？.md)
