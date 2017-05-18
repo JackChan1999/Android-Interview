@@ -56,6 +56,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
   * [onSaveInstanceState源码内核分析](Android/onSaveInstanceState源码内核分析.md)
   * [深刻剖析activity启动模式-1](Android/深刻剖析activity启动模式-1.md)
   * [深刻剖析activity启动模式-2](Android/深刻剖析activity启动模式-2.md)
+  * [为什么service里面startActivity抛异常](Android/为什么service里面startActivity抛异常.md)
 * 与XMPP相关面试题
   * [阐述一下对XMPP协议理解以及优缺点？](Android/阐述一下对XMPP协议理解以及优缺点？.md)
   * [简单阐述一下及时推送原理？](Android/简单阐述一下及时推送原理？.md)
@@ -75,6 +76,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
   * [迭代开发的时候如何向前兼容新旧接口？](Android/迭代开发的时候如何向前兼容新旧接口？.md)
   * [手把手教你如何解决as jar包冲突](Android/手把手教你如何解决as jar包冲突.md)
   * [Context原理分析](Android/Context原理分析.md)
+  * [解决字体适配](Android/解决字体适配.md)
 * 与人事相关面试题
   * [人事面试宝典一之自我介绍](HR/人事面试宝典一之自我介绍.md)
   * [人事面试宝典二之离职](HR/人事面试宝典二之离职.md)
