@@ -31,6 +31,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
 13. [面试不失败-揭秘IT面试各个环节成功的内幕](https://pan.baidu.com/s/1mhB0aSg?errno=0&errmsg=Auth%20Login%20Sucess&&bduss=&ssnerror=0#list/path=%2F)
 14. [亲爱的面试官，这个我可没看过！（Android部分）](http://www.jianshu.com/p/89f19d67b348)
 15. [115个Java面试题及回答](https://github.com/snowdream/115-Java-Interview-Questions-and-Answers/tree/master/zh)
+16. [interview-about](https://github.com/closedevice/interview-about)
 
 ## 目录
 
