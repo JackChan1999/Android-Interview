@@ -67,15 +67,15 @@ String -->int常用的方法:
 
 内容大纲
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/3aGGuJWRuJfpKLZIKsFzpBFCCqqHGCkYfIJwMDSkzv1f2rjEpmLPiahq5sVn0DgBSoo3QAt4vicGWsMELstmJYdg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/jvm1)
 
 GC是什么?为什么要有GC?
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/3aGGuJWRuJfpKLZIKsFzpBFCCqqHGCkYxUQZvL3icwheXnp4GBFicEBvPSsESic7zQplUTf6plSIdQbCT5IGtxqwg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/jvm2)
 
 垃圾回收的优点和原理,并考虑两种回收机制
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/3aGGuJWRuJfpKLZIKsFzpBFCCqqHGCkYBa2pLc0g3Tpl5dEnI6icMs0OzlLTWiaoLIjheXib2CTz9UeAIX4INV4gQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/jvm3)
 
 垃圾回收器的基本原理是什么
 
@@ -85,16 +85,16 @@ GC基本原理
 
 Java中会有内存泄漏吗
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/3aGGuJWRuJfpKLZIKsFzpBFCCqqHGCkYxuiaWwdXLficLmkHb09n3UxA7uFicQc0jibib1CibB4l9zXnlrnksgInoibOQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/jvm4)
 
 Java中的内存泄漏
 
 ClassLoader如何加载class
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/3aGGuJWRuJfpKLZIKsFzpBFCCqqHGCkYaHWoXRu648WM3IAxCRGuraBexricFeFOVIB42lNRLGLcxvBaibnGjdXg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/jvm5)
 
 ClassLoader
 
 JVM内存模型图
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/3aGGuJWRuJfpKLZIKsFzpBFCCqqHGCkYlaz1xJAwpOdmwLaVYaicIQ2too1UGme8tr9YZ0mojcONorIuKQgdEOQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/jvm6)
