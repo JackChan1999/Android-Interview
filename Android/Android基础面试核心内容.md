@@ -43,7 +43,7 @@
 
 解决方案：
 
-将所有耗时操作，比如访问网络，Socket通信，查询大量SQL语句，复杂逻辑计算等都放在子线程中去，然后通过handler.sendMessage、runonUITread、AsyncTask等方式更新UI。无论如何都要确保用户界面操作的流畅度。如果耗时操作需要让用户等待，那么可以在界面上显示进度条。
+将所有耗时操作，比如访问网络，Socket通信，查询大量SQL语句，复杂逻辑计算等都放在子线程中去，然后通过handler.sendMessage()、runonUITread()、AsyncTask等方式更新UI。无论如何都要确保用户界面操作的流畅度。如果耗时操作需要让用户等待，那么可以在界面上显示进度条。
 
 ### 4. 谈谈Android的优点和不足之处
 
@@ -77,7 +77,7 @@
 
 android内部是通过如下代码进行判断具体一个短信多少byte的。
 
-ArrayList<String> android.telephony.SmsManager.divideMessage(String text)
+ArrayList&lt;String> android.telephony.SmsManager.divideMessage(String text)
 
 ### 6. sim卡的EF文件有何作用？
 
@@ -123,7 +123,7 @@ ArrayList<String> android.telephony.SmsManager.divideMessage(String text)
 
 ### 7. 如何判断是否有SD卡？
 
-通过如下方法：Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)，如果返回true就是有sdcard，如果返回false则没有。
+通过如下方法：`Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)`，如果返回true就是有sdcard，如果返回false则没有。
 
 ### 8. dvm的进程和Linux的进程, 应用程序的进程是否为同一个概念？
 
@@ -133,7 +133,7 @@ dvm指dalvik的虚拟机。每一个Android应用程序都拥有一个独立的D
 
 Dalvik和Java虚拟机的区别
 
-1、Dalvik主要是完成对象生命周期管理，堆栈管理，线程管理，安全和异常管理，以及垃圾回收等等重要功能。 　　
+1.Dalvik主要是完成对象生命周期管理，堆栈管理，线程管理，安全和异常管理，以及垃圾回收等等重要功能。 　　
 
 2.Dalvik负责进程隔离和线程管理，每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。 　　
 
@@ -332,24 +332,24 @@ android:theme="@android:style/Theme.Dialog"
 
 ```java
 //伪代码
-List<Activity> lists ;// 在application 全局的变量里面
+List<Activity> lists;// 在application 全局的变量里面
 lists = new ArrayList<Activity>();
-                lists.add(this);
-                for(Activity activity: lists)
-                {
-                        activity.finish();
-                }
-                lists.remove(this);
+lists.add(this);
+for (Activity activity : lists) {
+    activity.finish();
+}
+lists.remove(this);
 ```
 3.发送特定广播：
 
 在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。
 
+```java
 //给某个activity 注册接受接受广播的意图  
-
 registerReceiver(receiver, filter)
 
 //如果过接受到的是 关闭activity的广播  就调用finish()方法把当前的activity finish()掉
+```
 
 4.递归退出
 
@@ -371,13 +371,13 @@ Activity一共有以下四种launchMode：
 
 - singleInstance
 
-我们可以在AndroidManifest.xml配置<activity>的android:launchMode属性为以上四种之一即可。
+我们可以在AndroidManifest.xml配置&lt;activity>的android:launchMode属性为以上四种之一即可。
 
 下面我们结合实例一一介绍这四种lanchMode：
 
 #### 8.1 standard
 
-standard模式是默认的启动模式，不用为<activity>配置android:launchMode属性即可，当然也可以指定值为standard。
+standard模式是默认的启动模式，不用为&lt;activity>配置android:launchMode属性即可，当然也可以指定值为standard。
 
 我们将创建一个Activity，命名为FirstActivity，来演示一下标准的启动模式。FirstActivity代码如下：
 
@@ -417,7 +417,7 @@ FirstActivity界面中的TextView用于显示当前Activity实例的序列号，
 
 #### 8.2 singleTop
 
-我们在上面的基础上为<activity>指定属性android:launchMode="singleTop"，系统就会按照singleTop启动模式处理跳转行为。我们重复上面几个动作，将会出现下面的现象：
+我们在上面的基础上为&lt;activity>指定属性android:launchMode="singleTop"，系统就会按照singleTop启动模式处理跳转行为。我们重复上面几个动作，将会出现下面的现象：
 
 ![img](http://bbs.itheima.com/data/attachment/forum/201508/09/205728ut1x8w488q84869m.png.thumb.jpg)
 
@@ -487,9 +487,7 @@ startActivity(intent);
 
 这种启动模式比较特殊，因为它会启用一个新的栈结构，将Activity放置于这个新的栈结构中，并保证不再有其他Activity实例进入。
 
-我们修改FirstActivity的launchMode="standard"，SecondActivity的launchMode="singleInstance"，由于涉及到了多个栈结构，我们需要在每个Activity中显示当前栈结构的id，所以，
-
-我们为每个Activity添加如下代码：
+我们修改FirstActivity的launchMode="standard"，SecondActivity的launchMode="singleInstance"，由于涉及到了多个栈结构，我们需要在每个Activity中显示当前栈结构的id，所以，我们为每个Activity添加如下代码：
 
 ```java
 TextView taskIdView = (TextView) findViewById(R.id.taskIdView);  
@@ -513,17 +511,17 @@ taskIdView.setText("current task id: " + this.getTaskId());
 singleInstance启动模式可能是最复杂的一种模式，为了帮助大家理解，我举一个例子，假如我们有一个share应用，其中的ShareActivity是入口Activity，也是可供其他应用调用的Activity，我们把这个Activity的启动模式设置为singleInstance，然后在其他应用中调用。我们编辑ShareActivity的配置：
 
 ```xml
-  <activity
-         android:name=".ShareActivity"
-         android:launchMode="singleInstance" >
-  <intent-filter>
-  <action android:name="android.intent.action.MAIN" />
-  <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-   <intent-filter>
-<action android:name="android.intent.action.SINGLE_INSTANCE_SHARE" />
-<category android:name="android.intent.category.DEFAULT" />
-   </intent-filter>
+<activity
+    android:name=".ShareActivity"
+    android:launchMode="singleInstance" >
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.SINGLE_INSTANCE_SHARE" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
 </activity>
 ```
 然后我们在其他应用中这样启动该Activity：
@@ -559,7 +557,7 @@ service里面不能执行耗时的操作(网络请求，拷贝数据库，大文
 
 Activity通过bindService(Intent service, ServiceConnection conn,int flags)跟Service进行绑定，当绑定成功的时候Service会将代理对象通过回调的形式传给conn，这样我们就拿到了Service提供的服务代理对象。
 
-在Activity中可以通过startService和bindService方法启动Service。一般情况下如果想获取Service的服务对象那么肯定需要通过bindService（）方法，比如音乐播放器，第三方支付等。如果仅仅只是为了开启一个后台任务那么可以使用startService（）方法。
+在Activity中可以通过startService和bindService方法启动Service。一般情况下如果想获取Service的服务对象那么肯定需要通过bindService()方法，比如音乐播放器，第三方支付等。如果仅仅只是为了开启一个后台任务那么可以使用startService()方法。
 
 ### 3.请描述一下Service的生命周期
 
@@ -668,16 +666,23 @@ public void click(View view){
 
 ### 1.请描述一下BroadcastReceiver
 
-BroadCastReceiver是Android四大组件之一，主要用于接收系统或者app发送的广播事件。       广播分两种：有序广播和无序广播。       内部通信实现机制：通过Android系统的Binder机制实现通信。      
+BroadCastReceiver是Android四大组件之一，主要用于接收系统或者app发送的广播事件。广播分两种：有序广播和无序广播。   
+
+内部通信实现机制：通过Android系统的Binder机制实现通信。
+
 无序广播：完全异步，逻辑上可以被任何广播接收者接收到。优点是效率较高。缺点是一个接收者不能将处理结果传递给下一个接收者，并无法终止广播intent的传播。       
 
-有序广播：按照被接收者的优先级顺序，在被接收者中依次传播。比如有三个广播接收者A，B，C，优先级是A > B> C。那这个消息先传给A，再传给B，最后传给C。每个接收者有权终止广播，比如B终止广播，C就无法接收到。此外A接收到广播后可以对结果对象进行操作，当广播传给B时，B可以从结果对象中取得A存入的数据。在通过Context.sendOrderedBroadcast(intent, receiverPermission,resultReceiver, scheduler, initialCode, initialData, initialExtras)时我们可以指定resultReceiver广播接收者，这个接收者我们可以认为是最终接收者，通常情况下如果比他优先级更高的接收者如果没有终止广播，那么他的onReceive会被执行两次，第一次是正常的按照优先级顺序执行，第二次是作为最终接收者接收。如果比他优先级高的接收者终止了广播，那么他依然能接收到广播。       
+有序广播：按照被接收者的优先级顺序，在被接收者中依次传播。比如有三个广播接收者A，B，C，优先级是A > B> C。那这个消息先传给A，再传给B，最后传给C。每个接收者有权终止广播，比如B终止广播，C就无法接收到。此外A接收到广播后可以对结果对象进行操作，当广播传给B时，B可以从结果对象中取得A存入的数据。在通过Context.sendOrderedBroadcast(intent, receiverPermission,resultReceiver, scheduler, initialCode, initialData, initialExtras)时我们可以指定resultReceiver广播接收者，这个接收者我们可以认为是最终接收者，通常情况下如果比他优先级更高的接收者如果没有终止广播，那么他的onReceive会被执行两次，第一次是正常的按照优先级顺序执行，第二次是作为最终接收者接收。如果比他优先级高的接收者终止了广播，那么他依然能接收到广播。
 
-在我们的项目中经常使用广播接收者接收系统通知，比如开机启动、sd挂载、低电量、外播电话、锁屏等。       如果我们做的是播放器，那么监听到用户锁屏后我们应该将我们的播放之暂停等。
+在我们的项目中经常使用广播接收者接收系统通知，比如开机启动、sd挂载、低电量、外播电话、锁屏等。
+
+如果我们做的是播放器，那么监听到用户锁屏后我们应该将我们的播放之暂停等。
 
 ### 2.在manifest和代码中如何注册和使用BroadcastReceiver
 
-在清单文件中注册广播接收者称为静态注册，在代码中注册称为动态注册。静态注册的广播接收者只要app在系统中运行则一直可以接收到广播消息，动态注册的广播接收者当注册的Activity或者Service销毁了那么就接收不到广播了。             静态注册：在清单文件中进行如下配置  
+在清单文件中注册广播接收者称为静态注册，在代码中注册称为动态注册。静态注册的广播接收者只要app在系统中运行则一直可以接收到广播消息，动态注册的广播接收者当注册的Activity或者Service销毁了那么就接收不到广播了。 
+
+静态注册：在清单文件中进行如下配置  
 
 ```xml
 <receiver android:name=".BroadcastReceiver1" >
@@ -715,8 +720,10 @@ d. 耗时的较长的工作最好放在服务中完成；
 ContentProvider是应用程序之间共享数据的接口。使用的时候首先自定义一个类继承ContentProvider，然后覆写query、insert、update、delete等方法。因为其是四大组件之一因此必须在AndroidManifest文件中进行注册。
 
 ```xml
-<provider     
-android:exported="true"     android:name="com.itheima.contenProvider.provider.PersonContentProvider"android:authorities="com.itheima.person" />
+<provider
+   android:name="com.jackchan.contenProvider.provider.PersonContentProvider"
+   android:authorities="com.itheima.person"
+   android:exported="true"/>
 ```
 
 第三方可以通过ContentResolver来访问该Provider。
@@ -731,10 +738,18 @@ android:exported="true"     android:name="com.itheima.contenProvider.provider.Pe
 
 ### 3.为什么要用ContentProvider？它和sql的实现上有什么差别？
 
-ContentProvider屏蔽了数据存储的细节,内部实现对用户完全透明,用户只需要关心操作数据的uri就可以了，ContentProvider可以实现不同app之间共享。       Sql也有增删改查的方法，但是sql只能查询本应用下的数据库。而ContentProvider 还可以去增删改查本地文件. xml文件的读取等。
+ContentProvider屏蔽了数据存储的细节,内部实现对用户完全透明,用户只需要关心操作数据的uri就可以了，ContentProvider可以实现不同app之间共享。    
+
+Sql也有增删改查的方法，但是sql只能查询本应用下的数据库。而ContentProvider 还可以去增删改查本地文件. xml文件的读取等。
+
 ### 4、说说ContentProvider、ContentResolver、ContentObserver之间的关系
 
-ContentProvider 内容提供者，用于对外提供数据       ContentResolver.notifyChange(uri)发出消息       ContentResolver 内容解析者，用于获取内容提供者提供的数据       ContentObserver 内容监听器，可以监听数据的改变状态       ContentResolver.registerContentObserver()监听消息。
+- ContentProvider 内容提供者，用于对外提供数据       
+- ContentResolver.notifyChange(uri)发出消息       
+- ContentResolver 内容解析者，用于获取内容提供者提供的数据       
+- ContentObserver 内容监听器，可以监听数据的改变状态       
+- ContentResolver.registerContentObserver()监听消息
+
 ## Android中的布局
 
 ### 1.Android中常用的布局都有哪些
@@ -765,23 +780,32 @@ android:padding和android:layout_margin的区别，其实概念很简单，paddi
 
 ### 3.ListView如何实现分页加载
 
-设置ListView的滚动监听器：setOnScrollListener(new OnScrollListener{….})。在监听器中有两个方法： 滚动状态发生变化的方法(onScrollStateChanged)和listView被滚动时调用的方法(onScroll)      
+设置ListView的滚动监听器：`setOnScrollListener(new OnScrollListener{….})`。在监听器中有两个方法： 滚动状态发生变化的方法(onScrollStateChanged)和listView被滚动时调用的方法(onScroll)      
 
-在滚动状态发生改变的方法中，有三种状态：       手指按下移动的状态：                     SCROLL_STATE_TOUCH_SCROLL: // 触摸滑动       惯性滚动（滑翔（flgin）状态）：    SCROLL_STATE_FLING: // 滑翔       静止状态：                                      SCROLL_STATE_IDLE: // 静止       对不同的状态进行处理：       
+在滚动状态发生改变的方法中，有三种状态：       
 
-分批加载数据，只关心静止状态：关心最后一个可见的条目，如果最后一个可见条目就是数据适配器（集合）里的最后一个，此时可加载更多的数据。在每次加载的时候，计算出滚动的数量，当滚动的数量大于等于总数量的时候，可以提示用户无更多数据了。4.ListView可以显示多种类型的条目吗
+- 手指按下移动的状态：SCROLL_STATE_TOUCH_SCROLL: // 触摸滑动       
+- 惯性滚动（滑翔（flgin）状态）：SCROLL_STATE_FLING: // 滑翔       
+- 静止状态：SCROLL_STATE_IDLE: // 静止       
 
-这个当然可以的，ListView显示的每个条目都是通过baseAdapter的getView(int position, View convertView, ViewGroup parent)来展示的，理论上我们完全可以让每个条目都是不同类型的view，除此之外adapter还提供了getViewTypeCount（）和getItemViewType(int position)两个方法。在getView方法中我们可以根据不同的viewtype加载不同的布局文件。
+对不同的状态进行处理：       
+
+分批加载数据，只关心静止状态：关心最后一个可见的条目，如果最后一个可见条目就是数据适配器（集合）里的最后一个，此时可加载更多的数据。在每次加载的时候，计算出滚动的数量，当滚动的数量大于等于总数量的时候，可以提示用户无更多数据了。
+
+### 4.ListView可以显示多种类型的条目吗
+
+这个当然可以的，ListView显示的每个条目都是通过baseAdapter的getView(int position, View convertView, ViewGroup parent)来展示的，理论上我们完全可以让每个条目都是不同类型的view，除此之外adapter还提供了getViewTypeCount()和getItemViewType(int position)两个方法。在getView方法中我们可以根据不同的viewtype加载不同的布局文件。
 
 ### 5.ListView如何定位到指定位置
 
-可以通过ListView提供的lv.setSelection(48);方法。
+可以通过ListView提供的`lv.setSelection(48);`方法。
 
 ### 6.当在ScrollView中如何嵌入ListView             
 
 通常情况下我们不会在ScrollView中嵌套ListView，但是如果面试官非让我嵌套的话也是可以的。
 
 在ScrollView添加一个ListView会导致listview控件显示不全，通常只会显示一条，这是因为两个控件的滚动事件冲突导致。所以需要通过listview中的item数量去计算listview的显示高度，从而使其完整展示，如下提供一个方法供大家参考。
+
 ```java
 lv = (ListView) findViewById(R.id.lv);
         adapter = new MyAdapter();
@@ -807,21 +831,26 @@ public void setListViewHeightBasedOnChildren(ListView listView) {
 ### 7.ListView中如何优化图片
 
 图片的优化策略比较多。       
-1.处理图片的方式：       
 
-如果ListView中自定义的Item中有涉及到大量图片的，一定要对图片进行细心的处理，因为图片占的内存是ListView项中最头疼的，处理图片的方法大致有以下几种：       ①不要直接拿路径就去循环BitmapFactory.decodeFile;使用Options保存图片大小、不要加载图片到内存去。       
+#### 处理图片的方式：       
 
-②对图片一定要经过边界压缩尤其是比较大的图片，如果你的图片是后台服务器处理好的那就不需要了       
+如果ListView中自定义的Item中有涉及到大量图片的，一定要对图片进行细心的处理，因为图片占的内存是ListView项中最头疼的，处理图片的方法大致有以下几种：       
 
-③在ListView中取图片时也不要直接拿个路径去取图片，而是以WeakReference（使用WeakReference代替强引用。比如可以使用WeakReference mContextRef）、SoftReference、WeakHashMap等的来存储图片信息。       
+- 不要直接拿路径就去循环BitmapFactory.decodeFile;使用Options保存图片大小、不要加载图片到内存去。       
 
-④在getView中做图片转换时，产生的中间变量一定及时释放
+- 对图片一定要经过边界压缩尤其是比较大的图片，如果你的图片是后台服务器处理好的那就不需要了       
 
-2.异步加载图片基本思想：      
- 1）先从内存缓存中获取图片显示（内存缓冲）       
- 2）获取不到的话从SD卡里获取（SD卡缓冲）      
-  3）都获取不到的话从网络下载图片并保存到SD卡同时加入内存并显示（视情况看是否要显示）       
-  原理：       
+- 在ListView中取图片时也不要直接拿个路径去取图片，而是以WeakReference（使用WeakReference代替强引用。比如可以使用WeakReference mContextRef）、SoftReference、WeakHashMap等的来存储图片信息。       
+
+- 在getView中做图片转换时，产生的中间变量一定及时释放
+
+#### 异步加载图片基本思想：      
+
+- 先从内存缓存中获取图片显示（内存缓冲）       
+- 获取不到的话从SD卡里获取（SD卡缓冲）      
+- 都获取不到的话从网络下载图片并保存到SD卡同时加入内存并显示（视情况看是否要显示）       
+
+原理：       
 
 优化一：先从内存中加载，没有则开启线程从SD卡或网络中获取，这里注意从SD卡获取图片是放在子线程里执行的，否则快速滑屏的话会不够流畅。      
 
@@ -830,17 +859,18 @@ public void setListViewHeightBasedOnChildren(ListView listView) {
 
 ### 8.ListView中图片错位的问题是如何产生的            
 
- 图片错位问题的本质源于我们的listview使用了缓存convertView，假设一种场景，一个listview一屏显示九个item，那么在拉出第十个item的时候，事实上该item是重复使用了第一个item，也就是说在第一个item从网络中下载图片并最终要显示的时候，其实该item已经不在当前显示区域内了，此时显示的后果将可能在第十个item上输出图像，这就导致了图片错位的问题。所以解决之道在于可见则显示，不可见则不显示。
+图片错位问题的本质源于我们的listview使用了缓存convertView，假设一种场景，一个listview一屏显示九个item，那么在拉出第十个item的时候，事实上该item是重复使用了第一个item，也就是说在第一个item从网络中下载图片并最终要显示的时候，其实该item已经不在当前显示区域内了，此时显示的后果将可能在第十个item上输出图像，这就导致了图片错位的问题。所以解决之道在于可见则显示，不可见则不显示。
 
 ### 9.Java中引用类型都有哪些
 
 Java中对象的引用分为四种级别，这四种级别由高到低依次为：强引用、软引用、弱引用和虚引用。
 
-强引用（StrongReference）
+**强引用（StrongReference）**
 
 这个就不多说，我们写代码天天在用的就是强引用。如果一个对象被被人拥有强引用，那么垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。
 
 Java的对象是位于heap中的，heap中对象有强可及对象、软可及对象、弱可及对象、虚可及对象和不可到达对象。应用的强弱顺序是强、软、弱、和虚。对于对象是属于哪种可及的对象，由他的最强的引用决定。如下代码：
+
 ```java
 String abc=new String("abc");  //1       
 SoftReference<String> softRef=new SoftReference<String>(abc);  //2       
@@ -848,9 +878,10 @@ WeakReference<String> weakRef = new WeakReference<String>(abc); //3
 abc=null; //4       
 softRef.clear();//5
 ```
-第一行在heap堆中创建内容为“abc”的对象，并建立abc到该对象的强引用,该对象是强可及的。       第二行和第三行分别建立对heap中对象的软引用和弱引用，此时heap中的abc对象已经有3个引用，显然此时abc对象仍是强可及的。       第四行之后heap中对象不再是强可及的，变成软可及的。       第五行执行之后变成弱可及的。
+第一行在heap堆中创建内容为“abc”的对象，并建立abc到该对象的强引用,该对象是强可及的。       
+第二行和第三行分别建立对heap中对象的软引用和弱引用，此时heap中的abc对象已经有3个引用，显然此时abc对象仍是强可及的。       第四行之后heap中对象不再是强可及的，变成软可及的。       第五行执行之后变成弱可及的。
 
-软引用（SoftReference）
+**软引用（SoftReference）**
 
 如果一个对象只具有软引用，那么如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。
 
@@ -858,21 +889,27 @@ softRef.clear();//5
 
 取决于gc的算法和gc运行时可用内存的大小。当gc决定要收集软引用时执行以下过程,以上面的softRef为例： 
 
-1、首先将softRef的referent（abc）设置为null，不再引用heap中的new String("abc")对象。       
-2、将heap中的newString("abc")对象设置为可结束的(finalizable)。       
-3.当heap中的new String("abc")对象的finalize()方法被运行而且该对象占用的内存被释放， softRef被添加到它的ReferenceQueue(如果有的话)中。            
+- 首先将softRef的referent（abc）设置为null，不再引用heap中的new String("abc")对象。       
+- 将heap中的newString("abc")对象设置为可结束的(finalizable)。       
+- 当heap中的new String("abc")对象的finalize()方法被运行而且该对象占用的内存被释放， softRef被添加到它的ReferenceQueue(如果有的话)中。            
 
-注意：对ReferenceQueue软引用和弱引用可以有可无，但是虚引用必须有。       被 SoftReference 指到的对象，即使没有任何 Direct Reference，也不会被清除。一直要到 JVM 内存不足且没有Direct Reference 时才会清除，SoftReference 是用来设计 object-cache 之用的。如此一来 SoftReference 不但可以把对象 cache 起来，也不会造成内存不足的错误（OutOfMemoryError）。file:///C:/Users/ADMINI~1/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg             
+注意：对ReferenceQueue软引用和弱引用可以有可无，但是虚引用必须有。被 SoftReference 指到的对象，即使没有任何 Direct Reference，也不会被清除。一直要到 JVM 内存不足且没有Direct Reference 时才会清除，SoftReference 是用来设计 object-cache 之用的。如此一来 SoftReference 不但可以把对象 cache 起来，也不会造成内存不足的错误（OutOfMemoryError）。file:///C:/Users/ADMINI~1/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg             
 
-弱引用（WeakReference）
+**弱引用（WeakReference）**
 
 如果一个对象只具有弱引用，那该类就是可有可无的对象，因为只要该对象被gc扫描到了随时都会把它干掉。弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。
 
-虚引用（PhantomReference）
+**虚引用（PhantomReference）**
 
-"虚引用"顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收。虚引用主要用来跟踪对象被垃圾回收的活动。             虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。
+"虚引用"顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收。虚引用主要用来跟踪对象被垃圾回收的活动。             
 
-建立虚引用之后通过get方法返回结果始终为null,通过源代码你会发现,虚引用通向会把引用的对象写进referent,只是get方法返回结果为null。先看一下和gc交互的过程再说一下他的作用。       1.不把referent设置为null, 直接把heap中的newString("abc")对象设置为可结束的(finalizable)。       2.与软引用和弱引用不同, 先把PhantomRefrence对象添加到它的ReferenceQueue中.然后在释放虚可及的对象。
+虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。
+
+建立虚引用之后通过get方法返回结果始终为null,通过源代码你会发现,虚引用通向会把引用的对象写进referent,只是get方法返回结果为null。先看一下和gc交互的过程再说一下他的作用。      
+
+1.不把referent设置为null, 直接把heap中的newString("abc")对象设置为可结束的(finalizable)。       
+
+2.与软引用和弱引用不同, 先把PhantomRefrence对象添加到它的ReferenceQueue中.然后在释放虚可及的对象。
 
 ## JNI&NDK
 
@@ -884,38 +921,144 @@ softRef.clear();//5
 
 2.请介绍一下NDK
 
-1.NDK 是一系列工具的集合       NDK 提供了一系列的工具，帮助开发者快速开发C（或C++）的动态库，并能自动将so 和java 应用一起打包成apk。NDK 集成了交叉编译器，并提供了相应的mk 文件隔离CPU、平台、ABI 等差异，开发人员只需要简单修改mk 文件（指出“哪些文件需要编译”、“编译特性要求”等），就可以创建出so。             2.NDK 提供了一份稳定、功能有限的API 头文件声明       Google 明确声明该API 是稳定的，在后续所有版本中都稳定支持当前发布的API。从该版本的NDK 中看出，这些API支持的功能非常有限，包含有：C 标准库（libc）、标准数学库（libm）、压缩库（libz）、Log 库（liblog）。
+1.NDK 是一系列工具的集合       
 
-3、JNI调用常用的两个参数       
-JNIEnv*env, jobject obj       第一个是指向虚拟机对象的指针，是一个二级指针。里面封装了很多方法和中间变量供我们使用。       第二个代表着调用该方法的Java对象的C语言表示。
+NDK 提供了一系列的工具，帮助开发者快速开发C（或C++）的动态库，并能自动将so 和java 应用一起打包成apk。NDK 集成了交叉编译器，并提供了相应的mk 文件隔离CPU、平台、ABI 等差异，开发人员只需要简单修改mk 文件（指出“哪些文件需要编译”、“编译特性要求”等），就可以创建出so。             
 
-九、Android中的网络访问       
+2.NDK 提供了一份稳定、功能有限的API 头文件声明       
+Google 明确声明该API 是稳定的，在后续所有版本中都稳定支持当前发布的API。从该版本的NDK 中看出，这些API支持的功能非常有限，包含有：C 标准库（libc）、标准数学库（libm）、压缩库（libz）、Log 库（liblog）。
 
-1、Android中如何访问网络
+3、JNI调用常用的两个参数
+JNIEnv*env, jobject obj       
+
+第一个是指向虚拟机对象的指针，是一个二级指针。里面封装了很多方法和中间变量供我们使用。       
+
+第二个代表着调用该方法的Java对象的C语言表示。
+
+## Android中的网络访问       
+
+### 1、Android中如何访问网络
 
 Android提供了org.apache.http.HttpClientConnection和java.net.HttpURLConnection两个连接网络对象。使用哪个都行，具体要看企业领导的要求了。       除此之外一般我比较喜欢使用xUtils中的HttpUtils功能，该模块底层使用的就是org.apache.http.client.HttpClient，使用起来非常方便。       
 
-2、如何解析服务器传来的JSON文件
+### 2、如何解析服务器传来的JSON文件
 
-在Android中内置了JSON的解析API，在org.json包中包含了如下几个类：JSONArray、JSONObject、JSONStringer、JSONTokener和一个异常类JSONException。             1、JSON解析步骤       1）读取网络文件数据并转为一个json字符串       InputStreamin = conn.getInputStream();       StringjsonStr = DataUtil.Stream2String(in);//将流转换成字符串的工具类       2）将字符串传入相应的JSON构造函数中       ①通过构造函数将json字符串转换成json对象       JSONObject  jsonObject = new JSONObject(jsonStr)；       ②通过构造函数将json字符串转换成json数组：       JSONArray array = new JSONArray(jsonStr);       3）解析出JSON中的数据信息：       ①从json对象中获取你所需要的键所对应的值       JSONObject json=jsonObject.getJSONObject("weatherinfo");       Stringcity = json.getString("city");       Stringtemp = json.getString("temp")       ②遍历JSON数组，获取数组中每一个json对象，同时可以获取json对象中键对应的值       for(int i = 0; i < array.length(); i++) {              JSONObject obj = array.getJSONObject(i);              Stringtitle=obj.getString("title");              Stringdescription=obj.getString("description");       }
+在Android中内置了JSON的解析API，在org.json包中包含了如下几个类：JSONArray、JSONObject、JSONStringer、JSONTokener和一个异常类JSONException。             
 
+1、JSON解析步骤       
+
+1）读取网络文件数据并转为一个json字符串  
+
+```java   
+InputStreamin = conn.getInputStream();       
+StringjsonStr = DataUtil.Stream2String(in);//将流转换成字符串的工具类       
+```
+
+2）将字符串传入相应的JSON构造函数中  
+
+- 通过构造函数将json字符串转换成json对象       
+```java
+JSONObject  jsonObject = new JSONObject(jsonStr)；       
+```
+- 通过构造函数将json字符串转换成json数组：       
+
+JSONArray array = new JSONArray(jsonStr);       
+
+3）解析出JSON中的数据信息：       
+
+- 从json对象中获取你所需要的键所对应的值 
+```java
+JSONObject json=jsonObject.getJSONObject("weatherinfo");       
+Stringcity = json.getString("city");       
+Stringtemp = json.getString("temp")       
+```
+
+- 遍历JSON数组，获取数组中每一个json对象，同时可以获取json对象中键对应的值       
+```java
+for(int i = 0; i < array.length(); i++) {              
+    JSONObject obj = array.getJSONObject(i);              
+    Stringtitle=obj.getString("title");              
+    Stringdescription=obj.getString("description");       
+}
+```
 2、生成JSON对象和数组       
 
-1）生成JSON：       方法1、创建一个map，通过构造方法将map转换成json对象       Map<String,Object> map = new HashMap<String, Object>();       map.put("name","zhangsan");       map.put("age",24);       JSONObjectjson = new JSONObject(map);       方法2、创建一个json对象，通过put方法添加数据       JSONObjectjson=new JSONObject();       json.put("name","zhangsan");       json.put("age",24);       
+1）生成JSON：       
 
-2）生成JSON数组：       创建一个list，通过构造方法将list转换成json对象       Map<String,Object> map1 = new HashMap<String, Object>();       map1.put("name","zhangsan");       map1.put("age",24);       Map<String,Object> map2 = new HashMap<String, Object>();       map2.put("name","lisi");       map2.put("age",25);       List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();       list.add(map1);       list.add(map2);       JSONArrayarray=new JSONArray(list);       System.out.println(array.toString());
+方法1、创建一个map，通过构造方法将map转换成json对象 
 
-3、如何解析服务器传来的XML格式数据             Android为我们提供了原生的XML解析和生成支持。       
+```java
+Map<String,Object> map = new HashMap<String, Object>();       
+map.put("name","zhangsan");       
+map.put("age",24);       
+JSONObjectjson = new JSONObject(map);       
+```
+方法2、创建一个json对象，通过put方法添加数据
 
-1、XML解析              获取解析器: Xml.newPullParser()              设置输入流: setInput()              获取当前事件类型: getEventType()              解析下一个事件, 获取类型: next()              获取标签名: getName()              获取属性值: getAttributeValue()              获取下一个文本: nextText()              获取当前文本: getText()              5种事件类型: START_DOCUMENT, END_DOCUMENT, START_TAG,END_TAG, TEXT
-       示例代码：public List<Person>getPersons(InuptStream in){  
+```java       
+JSONObjectjson=new JSONObject();       
+json.put("name","zhangsan");       
+json.put("age",24);       
+```
+
+2）生成JSON数组：       
+
+创建一个list，通过构造方法将list转换成json对象  
+
+```java
+Map<String,Object> map1 = new HashMap<String, Object>();       
+map1.put("name","zhangsan");       
+map1.put("age",24);       
+Map<String,Object> map2 = new HashMap<String, Object>();       
+map2.put("name","lisi");       
+map2.put("age",25);       
+List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();       
+list.add(map1);       
+list.add(map2);       
+JSONArrayarray=new JSONArray(list);       
+System.out.println(array.toString());
+```
+### 3、如何解析服务器传来的XML格式数据            
+
+Android为我们提供了原生的XML解析和生成支持。       
+
+1、XML解析              
+
+- 获取解析器: Xml.newPullParser()              
+- 设置输入流: setInput()              
+- 获取当前事件类型: getEventType()              
+- 解析下一个事件, 获取类型: next()              
+- 获取标签名: getName()              
+- 获取属性值: getAttributeValue()              
+- 获取下一个文本: nextText()              
+- 获取当前文本: getText()              
+
+5种事件类型: START_DOCUMENT, END_DOCUMENT, START_TAG,END_TAG, TEXT
+
+示例代码：
+```java
+public List<Person>getPersons(InuptStream in){  
        XmlPullParserparser=Xml.newPullParser();//获取解析器
        parser.setInput(in,"utf-8");
        for(inttype=){   //循环解析
        }      
-}**
-       2、XML生成              获取生成工具: Xml.newSerializer()              设置输出流: setOutput()              开始文档: startDocument()              结束文档: endDocument()              开始标签: startTag()              结束标签: endTag()              属性: attribute()              文本: text()   
-       示例代码：XmlSerializer serial=Xml.newSerializer();//获取xml序列化工具
+}
+```
+
+2、XML生成  
+
+- 获取生成工具: Xml.newSerializer()              
+- 设置输出流: setOutput()              
+- 开始文档: startDocument()              
+- 结束文档: endDocument()              
+- 开始标签: startTag()              
+- 结束标签: endTag()              
+- 属性: attribute()              
+- 文本: text()   
+
+示例代码：
+```java
+XmlSerializer serial=Xml.newSerializer();//获取xml序列化工具
 serial.setOuput(put,"utf-8");
 serial.startDocument("utf-8",true);
 serial.startTag(null,"persons");
@@ -930,14 +1073,34 @@ for(Person p:persons){
        serial.endTag(null,"age");
        serial.endTag(null,"persons");      
 }
+```
 
-4、如何从网络上加载一个图片显示到界面
+### 4、如何从网络上加载一个图片显示到界面
 
-可以通过BitmapFactory.decodeStream(inputStream);方法将图片转换为bitmap，然后通过imageView.setImageBitmap(bitmap);将该图片设置到ImageView中。这是原生的方法，还可以使用第三方开源的工具来实现，比如使用SmartImageView作为ImageView控件，然后直接设置一个url地址即可。也可以使用xUtils中的BitmapUtils工具。5、如何播放网络视频
+可以通过BitmapFactory.decodeStream(inputStream);方法将图片转换为bitmap，然后通过imageView.setImageBitmap(bitmap);将该图片设置到ImageView中。这是原生的方法，还可以使用第三方开源的工具来实现，比如使用SmartImageView作为ImageView控件，然后直接设置一个url地址即可。也可以使用xUtils中的BitmapUtils工具。
 
-除了使用Android提供的MediaPlayer和VideoView外通常还可以使用第三方开源万能播放器，VitamioPlayer。该播放器兼容性好，支持几乎所有主流视频格式。十、Intent1、Intent传递数据时，可以传递哪些类型数据？       Intent可以传递的数据类型非常的丰富，java的基本数据类型和String以及他们的数组形式都可以，除此之外还可以传递实现了Serializable和Parcelable接口的对象。
-2、Serializable和Parcelable的区别
-       1.在使用内存的时候，Parcelable 类比Serializable性能高，所以推荐使用Parcelable类。       2.Serializable在序列化的时候会产生大量的临时变量，从而引起频繁的GC。       3.Parcelable不能使用在要将数据存储在磁盘上的情况。尽管Serializable效率低点，但在这种情况下，还是建议你用Serializable 。       实现：       1、Serializable 的实现，只需要继承Serializable 即可。这只是给对象打了一个标记，系统会自动将其序列化。       2、Parcelabel 的实现，需要在类中添加一个静态成员变量 CREATOR，这个变量需要继承 Parcelable.Creator 接口。
+### 5、如何播放网络视频
+
+除了使用Android提供的MediaPlayer和VideoView外通常还可以使用第三方开源万能播放器，VitamioPlayer。该播放器兼容性好，支持几乎所有主流视频格式。
+
+## Intent      
+
+### 1、Intent传递数据时，可以传递哪些类型数据？
+
+ Intent可以传递的数据类型非常的丰富，java的基本数据类型和String以及他们的数组形式都可以，除此之外还可以传递实现了Serializable和Parcelable接口的对象。
+
+### 2、Serializable和Parcelable的区别
+
+- 在使用内存的时候，Parcelable 类比Serializable性能高，所以推荐使用Parcelable类。       
+- Serializable在序列化的时候会产生大量的临时变量，从而引起频繁的GC。       
+- Parcelable不能使用在要将数据存储在磁盘上的情况。尽管Serializable效率低点，但在这种情况下，还是建议你用Serializable 。       
+- 
+  实现：       
+
+1、Serializable 的实现，只需要继承Serializable 即可。这只是给对象打了一个标记，系统会自动将其序列化。       
+
+2、Parcelabel 的实现，需要在类中添加一个静态成员变量 CREATOR，这个变量需要继承 Parcelable.Creator 接口。
+```java
 public class MyParcelable implements Parcelable {
     private int mData;
     public int describeContents() {
@@ -959,22 +1122,69 @@ public class MyParcelable implements Parcelable {
         mData = in.readInt();
     }
 }
-
+```
 ### 3、请描述一下Intent 和 IntentFilter
 
-Android 中通过 Intent 对象来表示一条消息，一个 Intent对象不仅包含有这个消息的目的地，还可以包含消息的内容，这好比一封 Email，其中不仅应该包含收件地址，还可以包含具体的内容。对于一个 Intent 对象，消息“目的地”是必须的，而内容则是可选项。             通过Intent 可以实现各种系统组件的调用与激活。       IntentFilter: 可以理解为邮局或者是一个信笺的分拣系统…       这个分拣系统通过3个参数来识别       Action: 动作    view       Data: 数据uri   uri       Category : 而外的附加信息             Action 匹配
+Android 中通过 Intent 对象来表示一条消息，一个 Intent对象不仅包含有这个消息的目的地，还可以包含消息的内容，这好比一封 Email，其中不仅应该包含收件地址，还可以包含具体的内容。对于一个 Intent 对象，消息“目的地”是必须的，而内容则是可选项。             
+通过Intent 可以实现各种系统组件的调用与激活。       
+IntentFilter: 可以理解为邮局或者是一个信笺的分拣系统…       这个分拣系统通过3个参数来识别  
 
-Action 是一个用户定义的字符串，用于描述一个 Android 应用程序组件，一个 IntentFilter 可以包含多个 Action。在 AndroidManifest.xml 的 Activity 定义时可以在其 <intent-filter >节点指定一个 Action 列表用于标示 Activity 所能接受的“动作”，例如：       <intent-filter >       <action android:name="android.intent.action.MAIN"/>       <actionandroid:name="cn.itheima.action" />       ……       </intent-filter>
-       如果我们在启动一个 Activity 时使用这样的Intent 对象：       Intentintent =new Intent();       intent.setAction("cn.itheima.action");
-       那么所有的 Action 列表中包含了“cn.itheima”的 Activity 都将会匹配成功。       Android 预定义了一系列的 Action 分别表示特定的系统动作。这些Action 通过常量的方式定义在 android.content. Intent中，以“ACTION_”开头。我们可以在 Android 提供的文档中找到它们的详细说明。
-       URI 数据匹配
-       一个 Intent 可以通过 URI 携带外部数据给目标组件。在 <intent-filter >节点中，通过 <data/>节点匹配外部数据。       mimeType 属性指定携带外部数据的数据类型，scheme 指定协议，host、port、path 指定数据的位置、端口、和路径。如下：<data android:mimeType="mimeType"android:scheme="scheme"android:host="host"android:port="port" android:path="path"/>       电话的uri   tel:12345
-       自己定义的uri itcast://cn.itcast/person/10       如果在 Intent Filter 中指定了这些属性，那么只有所有的属性都匹配成功时 URI 数据匹配才会成功。
-       Category 类别匹配       <intent-filter >节点中可以为组件定义一个 Category 类别列表，当 Intent 中包含这个列表的所有项目时 Category 类别匹配才会成功。十一、Fragment1、Fragment跟Activity之间是如何传值的             当Fragment跟Activity绑定之后，在Fragment中可以直接通过getActivity（）方法获取到其绑定的Activity对象，这样就可以调用Activity的方法了。在Activity中可以通过如下方法获取到Fragment实例：
+- Action: 动作view       
+- Data: 数据uri   uri       
+- Category : 而外的附加信息             
+
+Action 匹配
+
+Action 是一个用户定义的字符串，用于描述一个 Android 应用程序组件，一个 IntentFilter 可以包含多个 Action。在 AndroidManifest.xml 的 Activity 定义时可以在其 &lt;intent-filter >节点指定一个 Action 列表用于标示 Activity 所能接受的“动作”，
+例如：
+
+```xml      
+<intent-filter>       
+    <action android:name="android.intent.action.MAIN"/>       
+    <actionandroid:name="cn.itheima.action" />       
+    ……       
+</intent-filter>
+```
+如果我们在启动一个 Activity 时使用这样的Intent 对象
+
+```
+Intentintent =new Intent();       
+intent.setAction("cn.itheima.action");
+```
+
+那么所有的 Action 列表中包含了“cn.itheima”的 Activity 都将会匹配成功。       Android 预定义了一系列的 Action 分别表示特定的系统动作。这些Action 通过常量的方式定义在 android.content. Intent中，以“ACTION_”开头。我们可以在 Android 提供的文档中找到它们的详细说明。
+
+URI 数据匹配
+
+一个 Intent 可以通过 URI 携带外部数据给目标组件。在 &lt;intent-filter >节点中，通过 &lt;data/>节点匹配外部数据。       
+
+mimeType 属性指定携带外部数据的数据类型，scheme 指定协议，host、port、path 指定数据的位置、端口、和路径。如下：
+```xml
+<data android:mimeType="mimeType"
+    android:scheme="scheme"
+    android:host="host"
+    android:port="port" 
+    android:path="path"/>       
+```
+电话的uri   tel:12345
+
+自己定义的uri itcast://cn.itcast/person/10       
+如果在 Intent Filter 中指定了这些属性，那么只有所有的属性都匹配成功时 URI 数据匹配才会成功。
+
+Category 类别匹配       
+
+&lt;intent-filter >节点中可以为组件定义一个 Category 类别列表，当 Intent 中包含这个列表的所有项目时 Category 类别匹配才会成功。
+
+## Fragment1、Fragment跟Activity之间是如何传值的             
+
+当Fragment跟Activity绑定之后，在Fragment中可以直接通过getActivity（）方法获取到其绑定的Activity对象，这样就可以调用Activity的方法了。在Activity中可以通过如下方法获取到Fragment实例：
+```java
 FragmentManager fragmentManager = getFragmentManager();
-                Fragment fragment = fragmentManager.findFragmentByTag(tag);
-                Fragment fragment = fragmentManager.findFragmentById(id);
-**
-       获取到Fragment之后就可以调用Fragment的方法。也就实现了通信功能。
+Fragment fragment = fragmentManager.findFragmentByTag(tag);
+Fragment fragment = fragmentManager.findFragmentById(id);
+```
+获取到Fragment之后就可以调用Fragment的方法。也就实现了通信功能。
+
 2、描述一下Fragment的生命周期
+
 ![img](http://bbs.itheima.com/data/attachment/forum/201508/09/221025fgoosncfa1cv215l.png.thumb.jpg)
