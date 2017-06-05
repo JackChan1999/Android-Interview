@@ -49,27 +49,19 @@
 
 优点：
 
-1.开放性，开源，免费，可定制
-
-2.挣脱运营商束缚
-
-3.丰富的硬件选择
-
-4.不受任何限制的开发商
-
-5.无缝结合的Google应用
+- 开放性，开源，免费，可定制
+- 挣脱运营商束缚
+- 丰富的硬件选择
+- 不受任何限制的开发商
+- 无缝结合的Google应用
 
 缺点：
 
-1.安全问题、隐私问题
-
-2.同质化严重
-
-3.运营商对Android手机仍然有影响
-
-4.山寨化严重
-
-5.过分依赖开发商，缺乏标准配置
+- 安全问题、隐私问题
+- 同质化严重
+- 运营商对Android手机仍然有影响
+- 山寨化严重
+- 过分依赖开发商，缺乏标准配置
 
 ### 5.一条最长的短信息约占多少byte?
 
@@ -275,11 +267,15 @@ public class MainActivity extends ActionBarActivity {
 
 ### 2.请描述一下Activity 生命周期
 
-Activity从创建到销毁有多种状态，从一种状态到另一种状态时会激发相应的回调方法，这些回调方法包括：onCreateonStart onResume onPause onStop onDestroy
+Activity从创建到销毁有多种状态，从一种状态到另一种状态时会激发相应的回调方法，这些回调方法包括：onCreate、onStart、onResume、onPause、onStop、onDestroy
 
-其实这些方法都是两两对应的，onCreate创建与onDestroy销毁；
+其实这些方法都是两两对应的，
 
-onStart可见与onStop不可见；onResume可编辑（即焦点）与onPause；
+onCreate创建与onDestroy销毁；
+
+onStart可见与onStop不可见；
+
+onResume可编辑（即焦点）与onPause；
 
 这6个方法是相对应的，那么就只剩下一个onRestart方法了，这个方法在什么时候调用呢？
 
@@ -310,9 +306,9 @@ protected void onSaveInstanceState(Bundle outState) {
 
 此时的生命周期跟清单文件里的配置有关系。
 
-1.不设置Activity的android:configChanges时，切屏会重新调用各个生命周期，默认首先销毁当前activity，然后重新加载。
+1.不设置Activity的`android:configChanges`时，切屏会重新调用各个生命周期，默认首先销毁当前activity，然后重新加载。
 
-2.设置Activity的android:configChanges="orientation|keyboardHidden|screenSize"时，切屏不会重新调用各个生命周期，只会执行onConfigurationChanged方法。
+2.设置Activity的`android:configChanges="orientation|keyboardHidden|screenSize"`时，切屏不会重新调用各个生命周期，只会执行onConfigurationChanged方法。
 
 通常在游戏开发， 屏幕的朝向都是写死的。
 
@@ -363,15 +359,15 @@ registerReceiver(receiver, filter)
 
 Activity一共有以下四种launchMode：
 
-- standard
+- standard 默认启动模式
 
-- singleTop
+- singleTop 栈顶复用模式
 
-- singleTask
+- singleTask 栈内复用模式
 
-- singleInstance
+- singleInstance 单例模式
 
-我们可以在AndroidManifest.xml配置&lt;activity>的android:launchMode属性为以上四种之一即可。
+我们可以在AndroidManifest.xml配置<activity>的android:launchMode属性为以上四种之一即可。
 
 下面我们结合实例一一介绍这四种lanchMode：
 
