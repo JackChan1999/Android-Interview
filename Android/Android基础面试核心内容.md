@@ -1184,3 +1184,7 @@ Fragment fragment = fragmentManager.findFragmentById(id);
 2、描述一下Fragment的生命周期
 
 ![img](http://bbs.itheima.com/data/attachment/forum/201508/09/221025fgoosncfa1cv215l.png.thumb.jpg)
+
+## 能否在子线程中更新UI
+
+可以的，在onCreate()的setContentView()后new一个Thread去更新UI是不会报错的，但是延迟1s后再更新UI就会报错，这是因为在onCreate()的时候ViewRoot的requestLayout()方法没有执行，layout布局文件还没有创建完成。而ViewRoot的requestLayout()方法中才会调用checkThread()方法检查当前是否是主线程，不是的话就抛CalledFromWrongThreadException。Android中的定义是：不建议在子线程中更新UI，否则会产生不可预知的错误

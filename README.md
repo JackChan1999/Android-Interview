@@ -84,6 +84,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
   * [解决字体适配](开发遇到的问题/解决字体适配.md)
   * [软键盘顶出去解决方案](开发遇到的问题/软键盘顶出去解决方案.md)
   * [机型适配之痛](开发遇到的问题/机型适配之痛.md)
+  * [ViewPager和Fragment使用过程中会遇到哪些问题](开发遇到的问题/ViewPager和Fragment使用过程中会遇到哪些问题.md)
 * [与人事相关面试题](HR/README.md)
   * [人事面试宝典一之自我介绍](HR/人事面试宝典一之自我介绍.md)
   * [人事面试宝典二之离职](HR/人事面试宝典二之离职.md)
