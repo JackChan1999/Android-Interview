@@ -47,7 +47,7 @@
 
 - 项目介绍
 - 项目中做了些什么？主要解决的问题
-- 为什么选择 Retrofit,RxJava
+- 为什么选择 Retrofit，RxJava
 - RxJava 的特点
 - 进程调度
 - 进程与线程
@@ -57,8 +57,8 @@
 - 并发集合了解哪些
 - ConCurrentHashMap 实现
 - CAS 介绍
-- 锁 synchronized,lock
-- 开启线程的三种方式,run() 和 start() 方法区别
+- 锁 synchronized，lock
+- 开启线程的三种方式，run() 和 start() 方法区别
 - 线程池
 - 常用数据结构简介
 - 判断环
@@ -272,13 +272,13 @@ Android 开发艺术探索(面试必备，内容都深入浅出)
 
 剑指offer(面试必备，面试的时候好多 上面的题目)
 
-其他的没看了，不过可以推荐一个网上视频课程，讲的很好——数据结构 http://www.icourse163.org/learn/ZJU-93001?tid=120001
+其他的没看了，不过可以推荐一个网上视频课程，讲的很好——[数据结构](http://www.icourse163.org/learn/ZJU-93001?tid=120001) 
 
 ### 操作系统
 
 现代操作系统(需要耐心的看，书也挺厚，暂时没看完)
 
-推荐个网上课程——操作系统 http://www.xuetangx.com/courses/course-v1:TsinghuaX+30240243X_2015_T2+2015_T2/courseware/be5b8d4fec0c4c329d19845020bc67b2/39384cfa48f44ee8a99561f69f4db4a5/
+推荐个网上课程——[操作系统](http://www.xuetangx.com/courses/course-v1:TsinghuaX+30240243X_2015_T2+2015_T2/courseware/be5b8d4fec0c4c329d19845020bc67b2/39384cfa48f44ee8a99561f69f4db4a5/) 
 
 ## 总结
 
@@ -296,4 +296,4 @@ Android 开发艺术探索(面试必备，内容都深入浅出)
 
 更多面试吐槽，面试题，请看这个专题
 
-《Android面试专辑》http://www.jianshu.com/c/1009682ba4cb
+[《Android面试专辑》](http://www.jianshu.com/c/1009682ba4cb)
