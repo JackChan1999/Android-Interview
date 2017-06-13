@@ -12,6 +12,8 @@ typora-copy-images-to: img
 
 由操作系统的引导文件去运行linux的内核程序，内核程序开始启动的时候会加载各种驱动和数据结构，开始加载android应用层的第一个进程（init进程c代码（system\core\init目录） Init.c）
 
+Zygote进程 --> SystemServer --> 系统服务AMS，WMS，PMS...
+
 1、当引导程序启动Linux内核后，会加载各种驱动和数据结构，当有了驱动以后，开始启动Android系统同时会加载用户级别的第一个进程init（system\core\init.c）代码如下：
 ```c
 int main(int argc, char **argv)
