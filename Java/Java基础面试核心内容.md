@@ -107,7 +107,6 @@ objectInputStream.close();
 
 ## 6.1 HashMap排序题，上机题。(本人主要靠这道题入职的第一家公司)
 
-
 已知一个HashMap\<Integer，User>集合， User有name（String）和age（int）属性。请写一个方法实现对HashMap的排序功能，该方法接收HashMap\<Integer，User>为形参，返回类型为HashMap\<Integer，User>，要求对HashMap中的User的age倒序进行排序。排序时key=value键值对不得拆散。
 
 要做出这道题必须对集合的体系结构非常的熟悉。HashMap本身就是不可排序的，但是该道题偏偏让给HashMap排序，那我们就得想在API中有没有这样的Map结构是有序的，LinkedHashMap，对的，就是他，他是Map结构，也是链表结构，有序的，更可喜的是他是HashMap的子类，我们返回LinkedHashMap\<Integer,User>即可，还符合面向接口（父类编程的思想）。但凡是对集合的操作，我们应该保持一个原则就是能用JDK中的API就有JDK中的API，比如排序算法我们不应该去用冒泡或者选择，而是首先想到用Collections集合工具类。
@@ -241,7 +240,7 @@ public class VolatileTest {
 
 上面的解释用一张图表示如下：
 
-![img](http://bbs.itheima.com/data/attachment/forum/201508/09/170711wme4c22zc9eu62mh.png.thumb.jpg)
+![img](img/java内存模型.jpg)
 
 ## 7.5 什么是线程池，如何使用？
 
