@@ -74,7 +74,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
   - [与IPC机制相关面试题](性能优化/与IPC机制相关面试题.md)
 - [与登录相关面试题](登陆注册/README.md)
   - [Oauth的实现原理](登陆注册/Oauth的实现原理.md)
-  - [Token的实际意义](登陆注册/token的实际意义.md)
+  - [Token的实际意义](登陆注册/Token的实际意义.md)
   - [微信扫码登录内部实现原理](登陆注册/微信扫码登录内部实现原理.md)
 - [与开发相关面试题](开发遇到的问题/README.md)
   - [迭代开发的时候如何向前兼容新旧接口？](开发遇到的问题/迭代开发的时候如何向前兼容新旧接口？.md)
