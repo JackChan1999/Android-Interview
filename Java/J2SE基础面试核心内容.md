@@ -58,16 +58,16 @@ public int getNum(){
 
 Java有8种基本数据类型
 
-| 数据类型     | 字节数  |
-| :------- | :--- |
-| byte     | 1    |
-| char     | 2    |
-| short    | 2    |
-| int      | 4    |
-| float    | 4    |
-| double   | 8    |
-| long     | 8    |
-| boolean1 | 1    |
+| 数据类型    | 字节数  |
+| :------ | :--- |
+| byte    | 1    |
+| char    | 2    |
+| short   | 2    |
+| int     | 4    |
+| float   | 4    |
+| double  | 8    |
+| long    | 8    |
+| boolean | 1    |
 
 PS：boolean类型比较特别可能只占一个bit，多个boolean可能共同占用一个字节
 

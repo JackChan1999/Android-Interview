@@ -22,20 +22,80 @@
 
 ### 2. 书写出android工程的目录结构
 
-- src 源文件
-- gen 生成的文件 R文件就在此
-- android. jar 依赖的android sdk
-- assets 资源文件
-- bin 生成的字节码apk在此
-- libs 依赖jar和so
-- res 资源文件
-  - drawable
-  - drawable-hdpi
-  - layout
-  - menu
-  - values
-- AndroidManifest.xml
-- project.properties
+```
+│  build.gradle       项目Gradle构建脚本
+│  gradle.properties  项目Gradle属性文件
+│  gradlew            在没有安装gradle的pc上使用,没用
+│  gradlew.bat        在没有安装gradle的pc上使用,没用
+│  local.properties   指定sdk所在目录
+│  settings.gradle    项目Gradle设置文件
+│  
+├─.gradle
+├─.idea
+├─app
+│  │  .gitignore   git忽略文件列表
+│  │  app.iml  临时文件,不需要关心
+│  │  build.gradle  Module Gradle构建脚本
+│  │  proguard-rules.pro    proguard混淆规则
+│  │  
+│  ├─build  构建目录，相当于Eclipse中默认Java工程的bin目录。编译生成的apk在此目录
+│  ├─libs   依赖包
+│  └─src
+│      ├─androidTest  测试相关代码文件夹
+│      │  └─java
+│      │      └─com
+│      │          └─itheima
+│      │              └─myapplication
+│      │                      ApplicationTest.java
+│      │                      
+│      └─main
+│          │  AndroidManifest.xml   清单文件
+│          │  
+│          ├─assets
+│          ├─aidl
+│          ├─java       项目源码
+│          │  └─com
+│          │      └─itheima
+│          │          └─myapplication
+│          │                  MainActivity.java
+│          │	
+│          ├─jni	放置c代码
+│          ├─jniLibs	放置so库
+│          ├─assets
+│          └─res        资源文件
+│              ├─drawable  .9图片只能放到drawable目录下
+│              ├─layout
+│              │      activity_main.xml
+│              │      
+│              ├─menu
+│              │      menu_main.xml
+│              │      
+│              ├─mipmap-hdpi            类似drawable-hdpi
+│              │      ic_launcher.png
+│              │      
+│              ├─mipmap-mdpi            类似drawable-mdpi
+│              │      ic_launcher.png
+│              │      
+│              ├─mipmap-xhdpi           类似drawable-xdpi
+│              │      ic_launcher.png
+│              │      
+│              ├─mipmap-xxhdpi          类似drawable-xxdpi
+│              │      ic_launcher.png
+│              │      
+│              ├─values
+│              │      dimens.xml
+│              │      strings.xml
+│              │      styles.xml
+│              │      
+│              └─values-w820dp
+│                      dimens.xml
+│                      
+├─build
+└─gradle
+    └─wrapper   gradle wrapper可以看作是对gradle的封装，它可以使得在没有安装gradle的电脑上也可以使用Gradle进行构建
+            gradle-wrapper.jar
+            gradle-wrapper.properties
+```
 
 ### 3. 什么是ANR 如何避免它？
 

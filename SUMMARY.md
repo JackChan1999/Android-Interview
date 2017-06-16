@@ -8,6 +8,7 @@
   * [Android面试题-2](Android/Android面试题-2.md)
   * [Android面试重点](Android/Android面试重点.md)
   * [接口安全](Android/接口安全.md)
+  * [平台架构](Android/平台架构.md)
 * [源码分析相关面试题](源码分析/README.md)
   * [Volley源码剖析](源码分析/Volley源码剖析.md)
   * [注解框架内部实现原理](源码分析/注解框架内部实现原理.md)
