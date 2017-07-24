@@ -1,18 +1,28 @@
-## GitHub托管
+## GitHub 托管
 
 https://github.com/JackChan1999/Android-Interview
 
-## GitBook在线阅读
+## GitBook 在线阅读
 
 在线阅读，PDF、ePub、Mobi电子书下载
 
 https://www.gitbook.com/book/alleniverson/android-interview/details
 
-## [Android面试宝典](http://download.csdn.net/detail/axi295309066/9842371)
+## [Android 面试宝典](http://download.csdn.net/detail/axi295309066/9842371)
 
 内容：JavaSE 基础，JavaSE 高级，Android 基础，Android 高级，Android 项目，项目面试常见问题，面试实战记录，BAT 面试题，Android 最新技术
 
 下载地址：http://download.csdn.net/detail/axi295309066/9842371
+
+## [Android 项目宝典](http://download.csdn.net/detail/axi295309066/9872667)
+
+本项目宝典收录了一些经典的开源项目，希望借此丰富大家的学习资料，让大家在工作中更加游刃有余。
+
+为了便于大家的学习，本人对所有项目进行测试运行，确认编译通过。并且对这些项目做了一些简单的分类，截取一些有代表性的图片，项目描述中附有百度网盘的下载链接。
+
+本项目宝典以后还会陆续更新，如有不足之处，还请大家提出宝贵的建议。
+
+下载地址：http://download.csdn.net/detail/axi295309066/9872667
 
 ## Android面试
 
@@ -110,6 +120,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
 - [经验分享](经验分享/README.md)
   - [一个程序员的血泪史](经验分享/一个程序员的血泪史.md)
   - [我为什么离开锤子科技？](经验分享/我为什么离开锤子科技？.md)
+  - [互联网巨头BAT3内部员工的真实状况](经验分享/互联网巨头BAT3内部员工的真实状况.md)
   - [扫清Android面试障碍](经验分享/扫清Android面试障碍.md)
   - [史上最全 Android 面试资料集合](经验分享/史上最全 Android 面试资料集合.md)
   - [2016年4月某公司面试题及面试流程](经验分享/2016年4月某公司面试题及面试流程.md)

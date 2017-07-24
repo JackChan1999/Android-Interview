@@ -4,11 +4,11 @@ typora-copy-images-to: img
 
 ## Android启动流程
 
-![1496667740020](img/1496667740020.png) ![1496667401193](img/1496667401193.png)  
+![](img/Android启动流程.png) ![](img/启动流程.png)  
 
-![](img/系统启动流程图.bmp)
+![](img/系统启动流程图.png)
 
-在Android系统启动时，第一个启动起来的进程就是zygote进程，然后由zygote启动SystemServer，再后就是启动ActivityManagerService，WindowManagerService等系统核心服务，这些服务承载着整个Android系统与客户端程序交互的重担。zygote除了启动系统服务和进程之外，普通的用户进程也由zygote进程fork而来，当一个应用进程启动起来后，就会加载用户在清单文件（AndroidManifest.xml）中配置的默认加载的Activity，此时加载的入口是`ActivityThread.main(String[] args)`，这个方法就类似与C语言中的main()方法，是整个应用程序的入口。
+在Android系统启动时，第一个启动起来的进程就是Zygote（进程孵化器）进程，然后由Zygote启动SystemServer，再后就是启动ActivityManagerService，WindowManagerService等系统核心服务，这些服务承载着整个Android系统与客户端程序交互的重担。Zygote除了启动系统服务和进程之外，普通的用户进程也由Zygote进程fork而来，当一个应用进程启动起来后，就会加载用户在清单文件（AndroidManifest.xml）中配置的默认加载的Activity，此时加载的入口是`ActivityThread.main(String[] args)`，这个方法就类似与C语言中的main()方法，是整个应用程序的入口。
 
 由操作系统的引导文件去运行linux的内核程序，内核程序开始启动的时候会加载各种驱动和数据结构，开始加载android应用层的第一个进程（init进程c代码（system\core\init目录） Init.c）
 

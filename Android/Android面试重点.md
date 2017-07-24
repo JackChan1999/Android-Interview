@@ -38,7 +38,7 @@ imageview.setTag(url)
 
 原理
 
-LinkedHashMap
+LinkedHashMap 双向循环链表
 
 - 参数1：初始大小
 - 参数2：装载因子
@@ -55,6 +55,10 @@ LruCache<String,Bitmap> cache = new LruCache<String,Bitmap>(memory){
     }
 };
 ```
+
+Lrucache .get(key) --> LinkedHashMap.get(key) : 命中，移动到双向循环链表的的尾部
+
+Lrucache .put(key) --> LinkedHashMap.put(key) : 如果size > maxSize，删除链表header节点直到size < maxSize
 
 3、 网络缓存
 

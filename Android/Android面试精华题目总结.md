@@ -6,13 +6,25 @@
 
 1、详述Android系统架构，包括层与层之间调用、binder、jni、底层文件读写方法
 
+android源码之前分为四层，如下图：
+
+![](img/framework.jpg)
+
+新的android源码分为五层（[平台架构](平台架构.md)），增加了HAL层，如下图：
+
+![](img/framework.png)
+
 - Linux Kernel
 
 Linux内核，主要是一些硬件驱动和Binder驱动（IPC进程间通信）
 
 - 硬件抽象层
 
-音视频，蓝牙，相机，传感器等，提供标准界面
+Android系统的硬件抽象层（Hardware Abstract Layer，HAL）运行用户空间中，它向下屏蔽硬件驱动模块的实现细节，向上提供硬件访问服务。通过硬件抽象层，Android系统分两层来支持硬件设备，其中一层实现在用户空间中，另一层实现在内核空间中。传统的Linux系统把对硬件的支持完全实现在内核空间中，即把对硬件的支持完全实现在硬件驱动模块中。
+
+Android系统里封装内核驱动程序的接口层。对上层提供接口，屏蔽底层驱动实现细节.
+
+本来Linux内核可以负责驱动接口定义和驱动实现，但是受限于GNU License（开源感染性），如果厂商选择驱动接口和实现都在内核空间完成，就必须开放自己的驱动源代码。这是不符合厂商利益的（驱动包含核心硬件参数，与其他厂家竞争的法宝）。所以Google将Linux内核中跟底层硬件操作相关的逻辑封装成HAL层接口，厂商基于接口去实现，不直接在内核空间实现驱动。因为Android系统遵循Apache License，不强制开源。
 
 - Libraries and Android Runtime
 
@@ -20,17 +32,17 @@ Linux内核，主要是一些硬件驱动和Binder驱动（IPC进程间通信）
 
 - Application FrameWork 框架层
 
-提供的是Java API，主要是各种Manager，如WindowManager，ActivityManager等
+提供的是Java API，主要是各种Manager，如WindowManager，ActivityManager等。
+
+硬件访问服务通过硬件抽象层模块来为应用程序提供硬件读写操作。由于硬件抽象层模块是使用C++语言开发的，而应用程序框架层中的硬件访问服务是使用Java语言开发的，因此，硬件访问服务必须通过Java本地接口（Java Native Interface，JNI）来调用硬件抽象层模块的接口。
+
+在Android应用程序框架层开发硬件访问服务的目的是为了让上层的Android应用程序能够访问对应的硬件设备。
 
 - Applications 应用层
 
 我们使用的系统自带App或者自己安装的App都属于应用层
 
-![](img/framework.jpg)
-
-![](img/framework.png)
-
-[平台架构](平台架构.md)
+应用程序框架中的基于Java语言的Binder接口是通过JNI来调用基于C/C++语言的Binder运行库来为Java应用程序提供进程间通信服务的
 
 2、描述自己的一个项目，要求画出结构图，UML图，详细描述项目种的技术点，技术难点以及解决方案
 
