@@ -17,6 +17,6 @@ Android中启动某个Activity，将先启动Activity所在的应用。应用启
 
 Activity启动时的概要交互流程如下图如下所示(点击图片可看[大图](http://www.cloudchou.com/wp-content/uploads/2015/05/activity_start_flow.png)):
 
-[![activity_start_flow](http://www.cloudchou.com/wp-content/uploads/2015/05/activity_start_flow.png)](http://www.cloudchou.com/wp-content/uploads/2015/05/activity_start_flow.png)
+![activity_start_flow](../assets/activity_start_flow.png)
 
 用户在Launcher程序里点击应用图标时，会通知ActivityManagerService启动应用的入口Activity，ActivityManagerService发现这个应用还未启动，则会通知Zygote进程孵化出应用进程，然后在这个dalvik应用进程里执行ActivityThread的main方法。应用进程接下来通知ActivityManagerService应用进程已启动，ActivityManagerService保存应用进程的一个代理对象，这样ActivityManagerService可以通过这个代理对象控制应用进程，然后ActivityManagerService通知应用进程创建入口Activity的实例，并执行它的生命周期方法。

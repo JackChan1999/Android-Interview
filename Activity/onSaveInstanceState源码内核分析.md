@@ -44,7 +44,7 @@
 
 经常有人问，后台的activity被系统自动回收的话，怎么回到界面的时候恢复数据，通过一个真实案例给大家讲讲如何保存状态，然后带着大家分析onSaveInstanceState的源码。
 
-![img](http://upload-images.jianshu.io/upload_images/4037105-79dd4bae8a99c6df?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://upload-images.jianshu.io/upload_images/4037105-79dd4bae8a99c6df?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### **当前页面侧滑菜单指向专题，用户做了如下操作：**
 
