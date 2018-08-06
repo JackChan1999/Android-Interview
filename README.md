@@ -46,6 +46,9 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
 ## 目录
 
 - [前言](README.md)
+- [Android视频教程](Android/Android视频教程.md)
+- [BAT大咖助力，全面升级Android面试](Android/BAT大咖助力全面升级Android面试.md)
+- [Android高级面试，10大开源框架源码解析](Android/Android高级面试10大开源框架源码解析.md)
 - [Android](Android/README.md)
   - [Android基础面试核心内容](Android/Android基础面试核心内容.md)
   - [Android面试精华题目总结](Android/Android面试精华题目总结.md)
@@ -141,7 +144,7 @@ https://www.gitbook.com/book/alleniverson/android-interview/details
 
 ## 关注我
 
-- Email：<815712739@qq.com>
+- Email：<619888095@qq.com>
 - CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
 - 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
 - GitHub：[JackChan1999](https://github.com/JackChan1999)
